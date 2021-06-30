@@ -3,9 +3,8 @@ import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import GameScreen from "../components/GameScreen";
-
-import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";
+import GameScreen from '../components/GameScreen';
+import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
@@ -45,14 +44,14 @@ const Profile = () => {
   return (
     <div>
       <h1>ADD GAME HERE</h1>
-      <GameScreen></GameScreen>
-      <div className="flex-row justify-start">
-        <div className="card">
-          <Link to="/characters" type="button">
-            Characters
-          </Link>
+        <GameScreen/>
+        <div className="flex-row justify-start">
+          <div className="card">
+            <Link to="/characters" type="button">
+              Characters
+            </Link>
+          </div>
         </div>
-      </div>
     </div>
   );
 };
