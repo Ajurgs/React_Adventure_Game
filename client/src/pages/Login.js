@@ -90,7 +90,7 @@ const Login = (props) => {
 
       <div className="col-12 col-lg-10">
         <button
-          className="btn btn-block btn-black"
+          className="btn btn-block btn-black mt-5"
           style={{ cursor: "pointer" }}
           type="submit"
         >
