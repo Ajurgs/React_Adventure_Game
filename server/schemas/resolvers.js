@@ -59,6 +59,38 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
+    addCharacterToProfile: async (parent, { characterId }, context) => {
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: {
+              characters: { characterId },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addCharacterToProfileById: async (parent, { characterId, profileId }) => {
+      return Profile.findOneAndUpdate(
+        { _id: profileId },
+        {
+          $addToSet: {
+            characters: characterId,
+          },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
   },
 };
 
