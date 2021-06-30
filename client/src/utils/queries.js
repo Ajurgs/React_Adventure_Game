@@ -11,6 +11,7 @@ export const QUERY_PROFILES = gql`
         name
         health
         class
+        attack
       }
     }
   }
@@ -26,6 +27,7 @@ export const QUERY_SINGLE_PROFILE = gql`
         name
         health
         class
+        attack
       }
     }
   }
@@ -39,6 +41,7 @@ export const QUERY_CHARACTERS = gql`
       name
       health
       class
+      attack
     }
   }
 `;
@@ -50,6 +53,7 @@ export const QUERY_SINGLE_CHARACTER = gql`
       name
       health
       class
+      attack
     }
   }
 `;

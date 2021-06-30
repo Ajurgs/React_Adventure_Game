@@ -14,6 +14,10 @@ const characterSchema = new Schema({
     type: String,
     required: true,
   },
+  attack: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Character = model("Character", characterSchema);
