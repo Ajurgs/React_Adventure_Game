@@ -8,6 +8,7 @@ import GameScreen from "../components/GameScreen";
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -45,6 +46,13 @@ const Profile = () => {
     <div>
       <h1>ADD GAME HERE</h1>
       <GameScreen></GameScreen>
+      <div className="flex-row justify-start">
+        <div className="card">
+          <Link to="/characters" type="button">
+            Characters
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
