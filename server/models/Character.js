@@ -17,5 +17,5 @@ const characterSchema = new Schema({
 });
 
 const Character = model("Character", characterSchema);
-
+console.log(Character);
 module.exports = Character;
