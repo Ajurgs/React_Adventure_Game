@@ -6,12 +6,13 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
+    characters: [Character]!
   }
 
   type Character {
     _id: ID
     name: String
-    health: Number
+    health: Int
     class: String
   }
 
