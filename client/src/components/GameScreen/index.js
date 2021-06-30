@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react';
 import { useGameContext } from '../../utils/GlobalState';
 import GameAction from '../GameAction';
+import GameRoom from '../GameRoom.js';
 import { TOGGLE_GAME } from '../../utils/actions';
 const GameScreen = () =>{
 
@@ -18,6 +19,7 @@ const GameScreen = () =>{
 
         return(
             <div className="card">
+                <GameRoom/>
                 <GameAction/>
                 <button onClick={toggleGame}>quit game</button>
             </div>

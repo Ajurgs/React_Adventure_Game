@@ -4,24 +4,27 @@ import {reducer} from '../../utils/reducers';
 
 const GameAction = () =>{
 
-    const [action,setAction] = useState();
+    const [action,setAction] = useState('choose');
     
+
+
     switch(action){
+        case 'choose':{
+            return(
+                <>
+            <button id="attack" onClick={()=>setAction('attack')}>Attack</button>
+            </>
+            )
+        }
         case 'attack':{
             return (
-                <>
+                <> 
+                <button onClick={()=>setAction('choose')}>Cancel</button>
                 </>
             )
         }
     }
 
-
-
-    return(
-        <>
-            <button id="attack">Attack</button>
-        </>
-    )
 }
 
 export default GameAction;
