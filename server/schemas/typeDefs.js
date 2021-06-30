@@ -17,6 +17,13 @@ const typeDefs = gql`
     attack: Int
   }
 
+  type Enemy {
+    _id: ID
+    name: String
+    health: Int
+    attack: Int
+  }
+
   type Auth {
     token: ID!
     profile: Profile
@@ -25,8 +32,10 @@ const typeDefs = gql`
   type Query {
     profiles: [Profile]!
     characters: [Character]!
+    enemies: [Enemy]!
     profile(profileId: ID!): Profile
     character(characterId: ID!): Character
+    enemy(enemyId: ID!): Enemy
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: Profile
   }

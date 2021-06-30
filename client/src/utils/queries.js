@@ -58,6 +58,29 @@ export const QUERY_SINGLE_CHARACTER = gql`
   }
 `;
 
+//enemy queries
+export const QUERY_ENEMIES = gql`
+  query allEnemies {
+    enemies {
+      _id
+      name
+      health
+      attack
+    }
+  }
+`;
+
+export const QUERY_SINGLE_ENEMY = gql`
+  query singleEnemy($enemyId: ID!) {
+    enemy(enemyId: $enemyId) {
+      _id
+      name
+      health
+      attack
+    }
+  }
+`;
+
 export const QUERY_ME = gql`
   query me {
     me {
