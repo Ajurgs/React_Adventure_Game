@@ -3,30 +3,35 @@
     "name": "Zach",
     "health": 5,
     "class": "Farmer",
-    "attack": 1
+    "attack": 1,
+    "cost": 0
   },
   {
     "name": "Lauren",
     "health": 65,
     "class": "Bounty Hunter",
-    "attack": 10
+    "attack": 10,
+    "cost": 20
   },
   {
     "name": "Jared",
     "health": 100,
     "class": "Healer",
-    "attack": 5
+    "attack": 5,
+    "cost": 25
   },
   {
     "name": "Alex",
     "health": 52,
     "class": "Engineer",
-    "attack": 10
+    "attack": 10,
+    "cost": 15
   },
   {
     "name": "Lisa",
     "health": 40,
     "class": "Queen",
-    "attack": 5
+    "attack": 5,
+    "cost": 35
   }
 ]

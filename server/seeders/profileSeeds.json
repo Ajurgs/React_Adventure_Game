@@ -2,16 +2,19 @@
   {
     "name": "JeBroney McSchtaufner",
     "email": "test@email.com",
-    "password": "password"
+    "password": "password",
+    "coins": 1000
   },
   {
     "name": "Max Kanat-Alexander",
     "email": "mkanatalexander@techfriends.dev",
-    "password": "password02"
+    "password": "password02",
+    "coins": 1000
   },
   {
     "name": "Amiko",
     "email": "amiko@techfriends.dev",
-    "password": "password03"
+    "password": "password03",
+    "coins": 1000
   }
 ]

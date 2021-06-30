@@ -25,6 +25,9 @@ const profileSchema = new Schema({
       ref: "Character",
     },
   ],
+  coins: {
+    type: Number,
+  },
 });
 
 // set up pre-save middleware to create password
