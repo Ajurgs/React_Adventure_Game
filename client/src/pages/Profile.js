@@ -3,7 +3,7 @@ import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-
+import GameScreen from '../components/GameScreen';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
@@ -45,7 +45,9 @@ const Profile = () => {
     <div>
 
       <h1>ADD GAME HERE</h1>
-
+      <GameScreen>
+        
+      </GameScreen>
     </div>
   );
 };
