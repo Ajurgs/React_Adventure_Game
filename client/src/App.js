@@ -14,7 +14,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import { GameProvider } from './utils/GlobalState';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -41,6 +41,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
+          <GameProvider>
           <Header />
           <div className="container">
             <Route exact path="/">
@@ -57,6 +58,7 @@ function App() {
             </Route>
           </div>
           <Footer />
+          </GameProvider>
         </div>
       </Router>
     </ApolloProvider>

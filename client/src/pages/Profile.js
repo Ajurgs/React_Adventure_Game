@@ -4,7 +4,6 @@ import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import GameScreen from '../components/GameScreen';
-
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
@@ -43,11 +42,8 @@ const Profile = () => {
 
   return (
     <div>
-
       <h1>ADD GAME HERE</h1>
-      <GameScreen>
-        
-      </GameScreen>
+        <GameScreen/>
     </div>
   );
 };
