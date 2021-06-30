@@ -2,7 +2,8 @@ const db = require("../config/connection");
 const { Profile, Character } = require("../models");
 const profileSeeds = require("./profileSeeds.json");
 const characterSeeds = require("./characterSeeds.json");
-
+console.log("profile: ", Profile);
+console.log("Character: ", Character);
 db.once("open", async () => {
   try {
     await Profile.deleteMany({});
