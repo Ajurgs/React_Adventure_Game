@@ -2,26 +2,31 @@
   {
     "name": "Zach",
     "health": 5,
-    "class": "Farmer"
+    "class": "Farmer",
+    "attack": 1
   },
   {
     "name": "Lauren",
     "health": 65,
-    "class": "Bounty Hunter"
+    "class": "Bounty Hunter",
+    "attack": 10
   },
   {
     "name": "Jared",
     "health": 100,
-    "class": "Healer"
+    "class": "Healer",
+    "attack": 5
   },
   {
     "name": "Alex",
     "health": 52,
-    "class": "Engineer"
+    "class": "Engineer",
+    "attack": 10
   },
   {
     "name": "Lisa",
     "health": 40,
-    "class": "Queen"
+    "class": "Queen",
+    "attack": 5
   }
 ]
