@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Zach",
+    "health": 5,
+    "class": "Farmer"
+  },
+  {
+    "name": "Lauren",
+    "health": 65,
+    "class": "Bounty Hunter"
+  },
+  {
+    "name": "Jared",
+    "health": 100,
+    "class": "Healer"
+  },
+  {
+    "name": "Alex",
+    "health": 52,
+    "class": "Engineer"
+  },
+  {
+    "name": "Lisa",
+    "health": 40,
+    "class": "Queen"
+  }
+]
