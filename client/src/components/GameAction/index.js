@@ -1,8 +1,10 @@
 import React,{useState} from "react";
 
-import {reducer} from '../../utils/reducers';
+import { useGameContext } from "../../utils/GlobalState";
+
 
 const GameAction = () =>{
+    const [state,dispatch] = useGameContext();
 
     const [action,setAction] = useState('choose');
     
@@ -19,6 +21,9 @@ const GameAction = () =>{
         case 'attack':{
             return (
                 <> 
+                {state.enemies.map((enemy,index) =>(
+                    <button>{enemy.name}</button>
+                ))}
                 <button onClick={()=>setAction('choose')}>Cancel</button>
                 </>
             )
