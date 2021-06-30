@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type Profile {
@@ -8,6 +8,13 @@ const typeDefs = gql`
     password: String
   }
 
+  type Character {
+    _id: ID
+    name: String
+    health: Number
+    class: String
+  }
+
   type Auth {
     token: ID!
     profile: Profile
@@ -15,7 +22,9 @@ const typeDefs = gql`
 
   type Query {
     profiles: [Profile]!
+    characters: [Character]!
     profile(profileId: ID!): Profile
+    character(characterId: ID!): Character
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: Profile
   }
