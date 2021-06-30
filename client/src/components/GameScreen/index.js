@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import { useGameContext } from '../../utils/GlobalState';
 import GameAction from '../GameAction';
 import GameRoom from '../GameRoom.js';
-import { TOGGLE_GAME } from '../../utils/actions';
+import { TOGGLE_GAME,TOGGLE_DUNGEON } from '../../utils/actions';
 
 const styles = {
     heroSelect:{
@@ -19,7 +19,9 @@ const GameScreen = () =>{
     function toggleGame(){
         dispatch({type:TOGGLE_GAME});
     }
-
+    function toggleDungeon(){
+        dispatch({type:TOGGLE_DUNGEON})
+    }
     if(state.gameRunning){
 
         if(state.inDungeon){
@@ -38,7 +40,7 @@ const GameScreen = () =>{
                 <div className="card">
                     
                     <form className="container">
-                        <h1>Chose Your Team</h1>
+                        <h1>Choose Your Team</h1>
                         <div className="row">
                             <div className="col-4">
                                 <select className="form-select form-select-lg" style={styles.heroSelect}>
@@ -56,8 +58,25 @@ const GameScreen = () =>{
                                 </select>
                             </div>
                         </div>
-                    </form>
+                        <h1 className="mt-4">Select a Dungeon to Enter</h1>
+                        <div className="row">
+                            <div className="col-2">
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value={5}/>
+                            <label className="form-check-label" htmlFor="inlineRadio1">5 Room</label>
+                            </div>
+                            <div className="col-2">
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value={10}/>
+                            <label className="form-check-label" htmlFor="inlineRadio2">10 Room</label>
+                            </div>
+                            <div className="col-2">
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value={20}/>
+                            <label className="form-check-label" htmlFor="inlineRadio3">20 Room </label>
+                            </div>
+                        </div>
 
+                        <button onClick={toggleDungeon}>Enter Dungeon</button>
+                    </form>
+                    
                     <button onClick={toggleGame}>quit game</button>
                 </div>
             )
