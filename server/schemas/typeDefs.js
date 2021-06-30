@@ -14,6 +14,7 @@ const typeDefs = gql`
     name: String
     health: Int
     class: String
+    attack: Int
   }
 
   type Auth {

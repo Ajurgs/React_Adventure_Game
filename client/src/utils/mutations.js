@@ -21,6 +21,7 @@ export const ADD_CHARACTER_TO_PROFILE = gql`
         name
         health
         class
+        attack
       }
     }
   }
