@@ -27,6 +27,16 @@ export const ADD_CHARACTER_TO_PROFILE = gql`
   }
 `;
 
+export const REMOVE_CHARACTER = gql`
+  mutation removeCharacter($character: String!) {
+    removeCharacter(character: $character) {
+      _id
+      name
+      characters
+    }
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
