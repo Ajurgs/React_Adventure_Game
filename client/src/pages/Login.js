@@ -89,13 +89,13 @@ const Login = (props) => {
       </div>
 
       <div className="col-12 col-lg-10">
-        <button
+        <Link
+          to="/Signup"
           className="btn btn-block btn-black mt-5"
           style={{ cursor: "pointer" }}
-          type="submit"
         >
           Sign Up
-        </button>
+        </Link>
       </div>
     </main>
   );
