@@ -7,6 +7,7 @@ const {Provider} = GameContext;
 const GameProvider = ({value = [], ...props})=>{
     const [state,dispatch] = useGameReducer({
         gameRunning:false,
+        enemies:[]
     })
     return <Provider value={[state,dispatch]} {...props}/>;
 }
