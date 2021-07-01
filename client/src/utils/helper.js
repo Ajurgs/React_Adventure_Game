@@ -1,5 +1,5 @@
 
-import { REMOVE_HERO,REMOVE_ENEMY,REMOVE_FROM_TURN,SET_ENEMIES } from "./actions";
+import { REMOVE_HERO,REMOVE_ENEMY,REMOVE_FROM_TURN,} from "./actions";
 
 
 export function getTurnOrder(heros,enemies) {

@@ -17,9 +17,11 @@ const GameScreen = () =>{
         thirdHero:"",
         dungeonSize:0,
     })
-
     const [state,dispatch]= useGameContext();
-
+    
+    useEffect(()=>{
+        console.log("roomChanged");
+    },[state.currentRoom])
     function toggleGame(){
         dispatch({type:TOGGLE_GAME});
     }
