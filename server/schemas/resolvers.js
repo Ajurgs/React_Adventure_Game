@@ -68,6 +68,17 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
+    removeCharacter: async (parent, { characterId, profileId }, context) => {
+      // if (context.user) {
+      return Profile.findOneAndUpdate(
+        { _id: profileId },
+        { $pull: { characters: characterId } },
+        { new: true }
+      );
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
+
     addCharacterToProfile: async (parent, { characterId }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
@@ -85,6 +96,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
     addCharacterToProfileById: async (parent, { characterId, profileId }) => {
       return Profile.findOneAndUpdate(
         { _id: profileId },

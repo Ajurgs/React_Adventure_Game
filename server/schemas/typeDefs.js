@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     characters: [Character]!
+    coins: Int
   }
 
   type Character {
@@ -15,6 +16,7 @@ const typeDefs = gql`
     health: Int
     class: String
     attack: Int
+    cost: Int
   }
 
   type Enemy {
@@ -45,6 +47,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addCharacterToProfile(characterId: ID!): Profile
     addCharacterToProfileById(characterId: ID!, profileId: ID!): Profile
+    removeCharacter(characterId: ID!, profileId: ID!): Profile
     removeProfile: Profile
   }
 `;

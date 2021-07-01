@@ -12,7 +12,9 @@ export const QUERY_PROFILES = gql`
         health
         class
         attack
+        cost
       }
+      coins
     }
   }
 `;
@@ -28,7 +30,9 @@ export const QUERY_SINGLE_PROFILE = gql`
         health
         class
         attack
+        cost
       }
+      coins
     }
   }
 `;
@@ -42,6 +46,7 @@ export const QUERY_CHARACTERS = gql`
       health
       class
       attack
+      cost
     }
   }
 `;
@@ -54,6 +59,7 @@ export const QUERY_SINGLE_CHARACTER = gql`
       health
       class
       attack
+      cost
     }
   }
 `;
