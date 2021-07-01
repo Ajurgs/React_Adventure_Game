@@ -2,14 +2,13 @@ import React from "react";
 import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
-import {
-  QUERY_CHARACTERS,
-  QUERY_SINGLE_CHARACTER,
-  QUERY_ME,
-} from "../utils/queries";
+import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { ADD_CHARACTER_TO_PROFILE } from "../utils/mutations";
+import {
+  ADD_CHARACTER_TO_PROFILE,
+  UPDATE_COIN_BALANCE,
+} from "../utils/mutations";
 //import quries and mutations?
 
 // import Auth from '../../utils/auth';
@@ -24,20 +23,42 @@ const Character = () => {
   const [addCharacterToProfile, { error, data }] = useMutation(
     ADD_CHARACTER_TO_PROFILE
   );
+
   const addCharacter = async (characterId) => {
     try {
-      // const { data } = await addCharacterToProfile({
-      //   variables: { characterId },
-      // });
-      console.log(characterId);
+      const { data } = await addCharacterToProfile({
+        variables: { characterId },
+      });
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const { coins, characters, _id } = profile.me;
+
+  //TODO update profile coin balance when hero is purchased
+  const [updateCoinBalance, { coinError, coinData }] =
+    useMutation(UPDATE_COIN_BALANCE);
+
+  const updateCoins = async (cost) => {
+    console.log("updating coin balance");
+    try {
+      const { data } = await updateCoinBalance({
+        variables: {
+          profileId: _id,
+          updatedCoins: coins - cost,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (loading || loadingMe) {
     return <div>Loading...</div>;
   }
-  const { coins, characters } = profile.me;
 
   return (
     <div>
@@ -70,7 +91,13 @@ const Character = () => {
                 <h4>Cost: {hero.cost}</h4>
               </div>
               <div className="card-body">
-                <button onClick={() => addCharacter(hero._id)}>Buy</button>
+                <button
+                  onClick={
+                    (() => addCharacter(hero._id), () => updateCoins(hero.cost))
+                  }
+                >
+                  Buy
+                </button>
               </div>
             </div>
           ))}

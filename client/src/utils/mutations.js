@@ -12,8 +12,16 @@ export const ADD_PROFILE = gql`
   }
 `;
 
+export const UPDATE_COIN_BALANCE = gql`
+  mutation updateCoinBalance($profileId: ID!, $updatedCoins: Int!) {
+    updateCoinBalance(profileId: $profileId, coins: $updatedCoins) {
+      coins
+    }
+  }
+`;
+
 export const ADD_CHARACTER_TO_PROFILE = gql`
-  mutation addCharacterToProfile($character: String!) {
+  mutation addCharacterToProfile($character: ID!) {
     addCharacterToProfile(characters: $character) {
       token
       character {
@@ -22,6 +30,24 @@ export const ADD_CHARACTER_TO_PROFILE = gql`
         health
         class
         attack
+        speed
+      }
+    }
+  }
+`;
+
+// testing
+export const ADD_CHARACTER_TO_PROFILE_BY_ID = gql`
+  mutation addCharacterToProfile($character: ID!, $profile: ID!) {
+    addCharacterToProfile(characters: $character) {
+      token
+      character {
+        _id
+        name
+        health
+        class
+        attack
+        speed
       }
     }
   }
