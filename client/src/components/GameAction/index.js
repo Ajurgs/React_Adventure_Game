@@ -9,11 +9,11 @@ const GameAction = () =>{
     const [action,setAction] = useState('choose');
     
 
-
+    const {enemies} = state;
     switch(action){
         case 'choose':{
             return(
-                <>
+            <>
             <button id="attack" onClick={()=>setAction('attack')}>Attack</button>
             </>
             )
@@ -21,8 +21,8 @@ const GameAction = () =>{
         case 'attack':{
             return (
                 <> 
-                {state.enemies.map((enemy,index) =>(
-                    <button>{enemy.name}</button>
+                {enemies.map((enemy,index) =>(
+                    <button key={index}>{enemy.name}</button>
                 ))}
                 <button onClick={()=>setAction('choose')}>Cancel</button>
                 </>
