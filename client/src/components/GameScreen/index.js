@@ -61,15 +61,15 @@ const GameScreen = () =>{
                         <h1 className="mt-4">Select a Dungeon to Enter</h1>
                         <div className="row">
                             <div className="col-2">
-                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value={5}/>
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="small" value={5}/>
                             <label className="form-check-label" htmlFor="inlineRadio1">5 Room</label>
                             </div>
                             <div className="col-2">
-                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value={10}/>
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="medium" value={10}/>
                             <label className="form-check-label" htmlFor="inlineRadio2">10 Room</label>
                             </div>
                             <div className="col-2">
-                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value={20}/>
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="large" value={20}/>
                             <label className="form-check-label" htmlFor="inlineRadio3">20 Room </label>
                             </div>
                         </div>
