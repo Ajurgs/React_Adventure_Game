@@ -48,18 +48,32 @@ const Profile = () => {
       </h4>
     );
   }
-
+  console.log(profile);
+  const { name, coins, characters } = profile;
   return (
     <div>
-      <h1>ADD GAME HERE</h1>
-      <GameScreen />
-      <div className="flex-row justify-start">
-        <div className="card">
-          <Link to="/characters" type="button">
-            Characters
-          </Link>
+      <div className="bg-light p-5">
+        <h1>Hello {name}!</h1>
+        <h4>Coin Balance: {coins}</h4>
+        {characters.length ? (
+          <h4>Your Current Party: {characters}</h4>
+        ) : (
+          <h4>Recruit some hero's to add to your party!</h4>
+        )}
+        <div className="flex-row justify-start">
+          <div>
+            <Link
+              to="/characters"
+              type="button"
+              className="bg-info p-5 m-2 text-light btn"
+            >
+              Character Shop
+            </Link>
+          </div>
         </div>
       </div>
+      <h1>Play if you dare!👻</h1>
+      <GameScreen />
     </div>
   );
 };

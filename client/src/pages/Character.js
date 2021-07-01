@@ -37,10 +37,22 @@ const Character = () => {
   if (loading || loadingMe) {
     return <div>Loading...</div>;
   }
-  const { coins } = profile.me;
+  const { coins, characters } = profile.me;
 
   return (
     <div>
+      {location.pathname !== "/me" && (
+        <button className="btn btn-dark mb-3" onClick={() => history.goBack()}>
+          &larr; Go Back
+        </button>
+      )}
+      <div className="bg-light p-5">
+        {characters.length ? (
+          <h4>Your Current Party: {characters}</h4>
+        ) : (
+          <h4>Recruit some hero's to add to your party!</h4>
+        )}
+      </div>
       <div className="bg-danger p-5">
         <h1>Your remaining coins: {coins} </h1>
         <h4>Successfully fight your way through the dungeon to earn more!</h4>
@@ -61,15 +73,6 @@ const Character = () => {
               </div>
             </div>
           ))}
-
-          {location.pathname !== "/me" && (
-            <button
-              className="btn btn-dark mb-3"
-              onClick={() => history.goBack()}
-            >
-              &larr; Go Back
-            </button>
-          )}
         </div>
       </main>
     </div>
