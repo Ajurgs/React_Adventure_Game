@@ -11,7 +11,13 @@ const GameRoom = () =>{
     const [state,dispatch]= useGameContext();
 
     const {currentCharacters,enemies} = state;
-    
+    if(state.betweenRooms){
+        return(
+            <div className="card m-3" style={Style}>
+                <h1>Populating Room</h1>
+            </div>
+        )
+    }
 
     return(
         <div className="card m-3" style={Style}>

@@ -92,6 +92,7 @@ const Character = () => {
               </div>
               <div className="card-body">
                 <button
+                  className="btn btn-sm-buy"
                   onClick={
                     (() => addCharacter(hero._id), () => updateCoins(hero.cost))
                   }
