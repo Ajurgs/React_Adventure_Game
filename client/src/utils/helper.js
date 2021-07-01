@@ -1,4 +1,5 @@
 
+import { REMOVE_HERO,REMOVE_ENEMY,REMOVE_FROM_TURN } from "./actions";
 
 export function getTurnOrder(heros,enemies) {
     let both = heros.concat(enemies);
@@ -13,4 +14,27 @@ export function nextTurn(current,turnOrder) {
         current = 0;
     }
     return current;
+}
+
+
+
+export function makeAttack(damage,target,dispatch){
+    
+    console.log(target);
+    target.health -= damage
+    if(target.health <= 0){
+        if(target.ai){
+            dispatch({type:REMOVE_ENEMY,payload:target._id});
+        }else{
+            dispatch({type:REMOVE_HERO,payload:target._id});
+        }
+        dispatch({type:REMOVE_FROM_TURN,payload:target._id});
+        
+    }
+}
+
+
+
+export function clearRook(){
+
 }

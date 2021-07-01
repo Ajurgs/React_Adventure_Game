@@ -10,7 +10,11 @@ import {
     TAKE_TURN,
     ADD_COIN,
     SUBTRACT_COIN,
-    SET_COIN
+    SET_COIN,
+    REMOVE_HERO,
+    REMOVE_ENEMY,
+    REMOVE_FROM_TURN,
+    NEXT_ROOM,
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -87,7 +91,31 @@ export default function reducer(state,action){
               ...state,
               coinBalance: action.payload,
             };
-    } 
+            case REMOVE_HERO:{
+                return{
+                    ...state,
+                    currentCharacters: [...state.currentCharacters].filter((hero)=> hero._id !== action.payload)
+                }
+            } 
+            case REMOVE_ENEMY:{
+                return{
+                    ...state,
+                    enemies: [...state.enemies].filter((enemy)=> enemy._id !== action.payload)
+                }
+            }
+            case REMOVE_FROM_TURN:{
+                return{
+                    ...state,
+                    turnOrder: [...state.turnOrder].filter((char)=> char._id !== action.payload)
+                }
+            }
+            case NEXT_ROOM:{
+                return{
+                    ...state,
+                    currentRoom: state.currentRoom++,
+                }
+            }
+        }
 }
 
 export function useGameReducer(initialState) {

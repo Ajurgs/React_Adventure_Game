@@ -9,3 +9,7 @@ export const TAKE_TURN = "TAKE_TURN";
 export const ADD_COIN = "ADD_COIN";
 export const SUBTRACT_COIN = "SUBTRACT_COIN";
 export const SET_COIN = "SET_COIN";
+export const REMOVE_HERO ="REMOVE_HERO";
+export const REMOVE_ENEMY = "REMOVE_ENEMY";
+export const REMOVE_FROM_TURN = "REMOVE_FROM_TURN";
+export const NEXT_ROOM = "NEXT_ROOM";
