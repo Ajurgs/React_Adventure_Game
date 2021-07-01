@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react';
 import { useGameContext } from '../../utils/GlobalState';
 import GameAction from '../GameAction';
 import GameRoom from '../GameRoom.js';
-import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROS,SET_TOTAL_ROOMS,SET_TURN_ORDER,MAKE_ROOM } from '../../utils/actions';
+import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,MAKE_ROOM } from '../../utils/actions';
 
 const styles = {
     heroSelect:{
@@ -38,7 +38,7 @@ const GameScreen = () =>{
         event.preventDefault();
         console.log(formState);
         try{
-            //dispatch({type:SET_HEROS, payload:[formState.firstHero,formState.secondHero,formState.thirdHero]});
+            //dispatch({type:SET_HEROES, payload:[formState.firstHero,formState.secondHero,formState.thirdHero]});
             dispatch({type:SET_TOTAL_ROOMS,payload:formState.dungeonSize});
             dispatch({type:SET_TURN_ORDER})
             //dispatch({type:MAKE_ROOM})

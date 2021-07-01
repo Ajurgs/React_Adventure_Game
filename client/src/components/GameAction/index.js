@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from "react";
-import { TAKE_TURN,NEXT_ROOM } from "../../utils/actions";
+import { TAKE_TURN,NEXT_ROOM,SET_ENEMIES } from "../../utils/actions";
 
 import { useGameContext } from "../../utils/GlobalState";
-import { QUERY_ENEMIES } from "../../utils/queries";
+import { QUERY_ENEMIES} from "../../utils/queries";
 import { useLazyQuery } from "@apollo/client";
 import { makeAttack, chooseThreeEnemies} from "../../utils/helper";
 
@@ -51,7 +51,12 @@ const GameAction = () =>{
         makeAttack(turnOrder[whoseTurn].attack,enemies[index],dispatch)
         dispatch({type:TAKE_TURN});
     }
-
+    function openDoor(enemies) {
+        const newEnemies = chooseThreeEnemies(enemies,dispatch);
+        dispatch({type:SET_ENEMIES, payload:newEnemies});
+        setAction('choose');
+        dispatch({type:NEXT_ROOM})
+    }
     if(turnOrder[whoseTurn].ai){
         // take the ai's turn
         console.log("ai turn");
@@ -111,12 +116,10 @@ const GameAction = () =>{
                 }
                 else{
                     if(data && data.enemies){
-                        console.log(data);
-                        //chooseThreeEnemies(enemyList,dispatch);
                         return(
                             <>
                             <h4>You Stand In Front of an Mysterious Door</h4>
-                            <button onClick={()=>setAction("choose")}>Open The Door</button>
+                            <button onClick={()=>openDoor(data.enemies)}>Open The Door</button>
                             </>
                         )
                     }

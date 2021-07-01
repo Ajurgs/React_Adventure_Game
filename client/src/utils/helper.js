@@ -1,5 +1,5 @@
 
-import { REMOVE_HERO,REMOVE_ENEMY,REMOVE_FROM_TURN } from "./actions";
+import { REMOVE_HERO,REMOVE_ENEMY,REMOVE_FROM_TURN,SET_ENEMIES } from "./actions";
 
 
 export function getTurnOrder(heros,enemies) {
@@ -38,4 +38,10 @@ export function makeAttack(damage,target,dispatch){
 
 export function chooseThreeEnemies(enemies,dispatch){
     console.log(enemies)
+    const firstEnemy = enemies[Math.floor(Math.random()*enemies.length)];
+    const secondEnemy = enemies[Math.floor(Math.random()*enemies.length)];
+    const thirdEnemy = enemies[Math.floor(Math.random()*enemies.length)];
+    const newEnemies = [firstEnemy,secondEnemy,thirdEnemy];
+    console.log(newEnemies);
+    return(newEnemies);
 }

@@ -3,7 +3,7 @@ import {
     ADD_CHARACTER,
     TOGGLE_GAME,
     TOGGLE_DUNGEON,
-    SET_HEROS,
+    SET_HEROES,
     SET_TOTAL_ROOMS,
     SET_TURN_ORDER,
     MAKE_ROOM,
@@ -15,7 +15,8 @@ import {
     REMOVE_ENEMY,
     REMOVE_FROM_TURN,
     NEXT_ROOM,
-    TOGGLE_BETWEEN_ROOM
+    TOGGLE_BETWEEN_ROOM,
+    SET_ENEMIES,
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -61,11 +62,17 @@ export default function reducer(state,action){
                 ...state,
                 totalRooms: Number(action.payload)
             }
-        case SET_HEROS:
+        case SET_HEROES:
             return{
                 ...state,
                 currentCharacters: action.payload,
             }
+        case SET_ENEMIES:{
+            return{
+                ...state,
+                enemies: action.payload,
+            }
+        }
         case MAKE_ROOM:{
             return{
                 ...state
@@ -98,31 +105,30 @@ export default function reducer(state,action){
               ...state,
               coinBalance: action.payload,
             };
-            case REMOVE_HERO:{
-                return{
-                    ...state,
-                    currentCharacters: [...state.currentCharacters].filter((hero)=> hero._id !== action.payload)
-                }
-            } 
-            case REMOVE_ENEMY:{
-                return{
-                    ...state,
-                    enemies: [...state.enemies].filter((enemy)=> enemy._id !== action.payload)
-                }
+        case REMOVE_HERO:{
+            return{
+                ...state,
+                currentCharacters: [...state.currentCharacters].filter((hero)=> hero._id !== action.payload)
             }
-            case REMOVE_FROM_TURN:{
-                return{
-                    ...state,
-                    turnOrder: [...state.turnOrder].filter((char)=> char._id !== action.payload)
-                }
+        } 
+        case REMOVE_ENEMY:{
+            return{
+                ...state,
+                enemies: [...state.enemies].filter((enemy)=> enemy._id !== action.payload)
             }
-            case NEXT_ROOM:{
-                return{
-                    ...state,
-                    currentRoom: state.currentRoom++,
-                    betweenRooms:true,
-                }
+        }
+        case REMOVE_FROM_TURN:{
+            return{
+                ...state,
+                turnOrder: [...state.turnOrder].filter((char)=> char._id !== action.payload)
             }
+        }
+        case NEXT_ROOM:{
+            return{
+                ...state,
+                currentRoom: state.currentRoom++,
+            }
+        }
         }
 }
 
