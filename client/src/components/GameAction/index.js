@@ -2,13 +2,16 @@ import React,{useState,useEffect} from "react";
 import { TAKE_TURN,NEXT_ROOM } from "../../utils/actions";
 
 import { useGameContext } from "../../utils/GlobalState";
+import { QUERY_ENEMIES } from "../../utils/queries";
+import { useLazyQuery } from "@apollo/client";
+import { makeAttack, chooseThreeEnemies} from "../../utils/helper";
 
-import { makeAttack } from "../../utils/helper";
 const GameAction = () =>{
     const [state,dispatch] = useGameContext();
 
     const [action,setAction] = useState('choose');
     
+    const [getEnemies,{loading,data}] = useLazyQuery(QUERY_ENEMIES);
 
     const {enemies,turnOrder,whoseTurn,currentCharacters} = state;
     useEffect(()=>{
@@ -38,6 +41,11 @@ const GameAction = () =>{
         
     }, [state.enemies.length,state.currentCharacters.length])
     
+    function setLoading() {
+        console.log("load enemies")
+        getEnemies();
+        setAction("loading");
+    }
     function handelAttack(index){
         console.log(`attacking ${state.enemies[index].name} at index ${index} `)
         makeAttack(turnOrder[whoseTurn].attack,enemies[index],dispatch)
@@ -82,14 +90,42 @@ const GameAction = () =>{
                 )
             }
             case 'nextRoom':{
+                
                 return(
                     <>
                         {/* go to next room */}
-                        <button onClick={()=>dispatch({type:NEXT_ROOM})}>Proceed to Next Room</button>
+                        <button onClick={()=>setLoading()}>Proceed to Next Room</button>
                         {/* {go to the end game screen} */}
                         <button>Leave Dungeon</button>
                     </>
                 )
+            }
+            case 'loading':{
+                
+                if(loading){
+                    return(
+                        <>
+                        <h4>You Proceed Down the Dark Halls</h4>
+                        </>
+                    )
+                }
+                else{
+                    if(data && data.enemies){
+                        console.log(data);
+                        //chooseThreeEnemies(enemyList,dispatch);
+                        return(
+                            <>
+                            <h4>You Stand In Front of an Mysterious Door</h4>
+                            <button onClick={()=>setAction("choose")}>Open The Door</button>
+                            </>
+                        )
+                    }
+                    return(
+                        <>
+                        <h4>You Proceed Down the Dark Halls</h4>
+                        </>
+                    )
+                }
             }
         }
     }

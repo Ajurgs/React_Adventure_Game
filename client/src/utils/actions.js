@@ -13,3 +13,4 @@ export const REMOVE_HERO ="REMOVE_HERO";
 export const REMOVE_ENEMY = "REMOVE_ENEMY";
 export const REMOVE_FROM_TURN = "REMOVE_FROM_TURN";
 export const NEXT_ROOM = "NEXT_ROOM";
+export const TOGGLE_BETWEEN_ROOM = "TOGGLE_BETWEEN_ROOM"

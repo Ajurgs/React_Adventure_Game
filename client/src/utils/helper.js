@@ -1,6 +1,7 @@
 
 import { REMOVE_HERO,REMOVE_ENEMY,REMOVE_FROM_TURN } from "./actions";
 
+
 export function getTurnOrder(heros,enemies) {
     let both = heros.concat(enemies);
     both.sort( (a,b) => b.speed-a.speed );
@@ -35,6 +36,6 @@ export function makeAttack(damage,target,dispatch){
 
 
 
-export function clearRook(){
-
+export function chooseThreeEnemies(enemies,dispatch){
+    console.log(enemies)
 }

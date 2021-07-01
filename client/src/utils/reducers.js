@@ -15,6 +15,7 @@ import {
     REMOVE_ENEMY,
     REMOVE_FROM_TURN,
     NEXT_ROOM,
+    TOGGLE_BETWEEN_ROOM
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -49,6 +50,12 @@ export default function reducer(state,action){
                 ...state,
                 inDungeon: !state.inDungeon
             }
+        case TOGGLE_BETWEEN_ROOM:{
+            return{
+                ...state,
+                betweenRooms: !state.betweenRooms
+            }
+        }
         case SET_TOTAL_ROOMS:
             return{
                 ...state,
@@ -113,6 +120,7 @@ export default function reducer(state,action){
                 return{
                     ...state,
                     currentRoom: state.currentRoom++,
+                    betweenRooms:true,
                 }
             }
         }
