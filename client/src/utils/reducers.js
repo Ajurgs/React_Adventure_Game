@@ -6,9 +6,11 @@ import {
     SET_HEROS,
     SET_TOTAL_ROOMS,
     SET_TURN_ORDER,
-    MAKE_ROOM
+    MAKE_ROOM,
+    TAKE_TURN,
 } from './actions';
 
+import { getTurnOrder ,nextTurn} from './helper';
 
 export default function reducer(state,action){
     switch(action.type){
@@ -43,7 +45,7 @@ export default function reducer(state,action){
         case SET_TOTAL_ROOMS:
             return{
                 ...state,
-                totalRooms: action.payload
+                totalRooms: Number(action.payload)
             }
         case SET_HEROS:
             return{
@@ -51,16 +53,20 @@ export default function reducer(state,action){
                 currentCharacters: action.payload,
             }
         case MAKE_ROOM:{
-            break;
+            return{
+                ...state
+            }
         }
         case SET_TURN_ORDER:{
-            
-
-
-
             return{
                 ...state,
-                turnOrder: action.payload
+                turnOrder: getTurnOrder(state.currentCharacters,state.enemies),
+            }
+        }
+        case TAKE_TURN:{
+            return{
+                ...state,
+                whoseTurn: nextTurn(state.whoseTurn,state.turnOrder)
             }
         }
     }

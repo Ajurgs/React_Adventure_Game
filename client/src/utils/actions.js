@@ -5,3 +5,4 @@ export const SET_TOTAL_ROOMS = "SET_TOTAL_ROOMS";
 export const SET_HEROS = "SET_HEROS";
 export const SET_TURN_ORDER= "SET_TURN_ORDER";
 export const MAKE_ROOM = "MAKE_ROOM";
+export const TAKE_TURN = "TAKE_TURN";
