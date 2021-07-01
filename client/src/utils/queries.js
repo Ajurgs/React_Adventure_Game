@@ -98,6 +98,16 @@ export const QUERY_ME = gql`
     me {
       _id
       name
+      coins
+      characters {
+        _id
+        name
+        health
+        class
+        attack
+        cost
+        speed
+      }
     }
   }
 `;
