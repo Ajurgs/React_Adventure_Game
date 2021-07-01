@@ -45,6 +45,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addCharacterToProfile(characterId: ID!): Profile
     addCharacterToProfileById(characterId: ID!, profileId: ID!): Profile
+    removeCharacter(characterId: ID!, profileId: ID!): Profile
     removeProfile: Profile
   }
 `;
