@@ -23,6 +23,12 @@ const GameAction = () =>{
             return () => clearTimeout(timer);
         }
     },[state.whoseTurn])
+
+    function handelAttack(index){
+        console.log(`attacking ${state.enemies[index].name} at index ${index} `)
+        dispatch({type:TAKE_TURN});
+    }
+
     if(turnOrder[whoseTurn].ai){
         // take the ai's turn
         console.log("ai turn");
@@ -46,7 +52,7 @@ const GameAction = () =>{
                 return (
                     <> 
                     {enemies.map((enemy,index) =>(
-                        <button key={index}>{enemy.name}</button>
+                        <button key={index} onClick={()=>handelAttack(index)}>{enemy.name}</button>
                     ))}
                     <button onClick={()=>setAction('choose')}>Cancel</button>
                     </>
