@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
 import { QUERY_CHARACTERS, QUERY_SINGLE_CHARACTER } from "../utils/queries";
@@ -10,6 +11,9 @@ import { ADD_CHARACTER_TO_PROFILE } from "../utils/mutations";
 // import Auth from '../../utils/auth';
 
 const Character = () => {
+  const location = useLocation();
+  const history = useHistory();
+
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
 
   const [addCharacterToProfile, { error, data }] = useMutation(
@@ -29,7 +33,6 @@ const Character = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(character);
   return (
     <div>
       <h3> Characters</h3>
@@ -48,6 +51,15 @@ const Character = () => {
               </div>
             </div>
           ))}
+
+          {location.pathname !== "/me" && (
+            <button
+              className="btn btn-dark mb-3"
+              onClick={() => history.goBack()}
+            >
+              &larr; Go Back
+            </button>
+          )}
         </div>
       </main>
     </div>
