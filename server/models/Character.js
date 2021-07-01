@@ -18,6 +18,10 @@ const characterSchema = new Schema({
     type: Number,
     required: true,
   },
+  cost: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Character = model("Character", characterSchema);

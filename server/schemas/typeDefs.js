@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     characters: [Character]!
+    coins: Int
   }
 
   type Character {
@@ -15,6 +16,7 @@ const typeDefs = gql`
     health: Int
     class: String
     attack: Int
+    cost: Int
   }
 
   type Enemy {
