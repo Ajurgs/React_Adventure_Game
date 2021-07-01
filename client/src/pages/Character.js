@@ -65,6 +65,7 @@ const Character = () => {
               <div className="card-header">
                 <h4>Name:{hero.name}</h4>
                 <h4>Health: {hero.health}</h4>
+                <h4>Class: {hero.class}</h4>
                 <h4>Attack: {hero.attack}</h4>
                 <h4>Cost: {hero.cost}</h4>
               </div>

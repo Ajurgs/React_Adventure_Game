@@ -38,5 +38,66 @@
     "attack": 5,
     "cost": 35,
     "speed": 7
-  }
+  },
+  
+  { "name" :"Chip",
+    "health" : 15 ,
+    "class" : "Ghost Buster",
+    "attack" : 10,
+    "cost" : 10,
+    "speed" : 5
+},
+{ "name" :"Josh",
+  "health" : 10,
+  "class" : "Grammer Master",
+  "attack": 10,
+  "cost" : 5,
+  "speed" :3
+},
+{
+  "name" :"Lacey",
+  "health" : 10,
+  "class" : "Butt Kicker",
+  "attack": 15,
+  "cost" : 5,
+  "speed" :4
+},
+{
+  "name" :"Aaron",
+  "health" : 15,
+  "class" : "Rock God",
+  "attack": 10,
+  "cost" : 10,
+  "speed" :4
+},
+{"name" :"Altan",
+  "health" : 20,
+  "class" : "Warrior",
+  "attack": 20,
+  "cost" : 10,
+  "speed" :5
+},
+{
+  "name" :"Zeke",
+  "health" : 15,
+  "class" : "Vampire",
+  "attack": 20,
+  "cost" : 10,
+  "speed" :6
+
+},
+{"name" :"Tarik",
+  "health" : 20,
+  "class" : "COVID Slayer",
+  "attack": 20,
+  "cost" : 15,
+  "speed" :7
+},
+{"name" :"Nando",
+  "health" : 10,
+  "class" : "Priest",
+  "attack": 15,
+  "cost" : 5,
+  "speed" :4
+}
 ]
