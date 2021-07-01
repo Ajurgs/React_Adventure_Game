@@ -27,9 +27,9 @@ const Profile = () => {
   const profile = data?.me || data?.profile || {};
 
   // code to try to display profile's coins
-  // const [state, dispatch] = useGameContext();
-  // const { coinBalance } = state;
-  // useEffect(() => dispatch({ type: SET_COIN, payload: coinBalance }, []));
+  const [state, dispatch] = useGameContext();
+  const { coinBalance } = state;
+  useEffect(() => dispatch({ type: SET_COIN, payload: coinBalance }, []));
 
   // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {

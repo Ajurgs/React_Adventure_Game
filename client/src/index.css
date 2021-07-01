@@ -20,6 +20,7 @@ html {
  */
 body {
   margin: 0;
+  background-color: #b2a198;
 }
 
 /**
@@ -33,6 +34,7 @@ main {
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
  */
+/* changes Haunted Caverns title/ your remaining coins */
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
@@ -44,13 +46,13 @@ h1 {
  * 1. Add the correct box sizing in Firefox.
  * 2. Show the overflow in Edge and IE.
  */
+/* This affects play button-lg */
 hr {
   box-sizing: content-box;
-  /* 1 */
+
   height: 0;
-  /* 1 */
+
   overflow: visible;
-  /* 2 */
 }
 
 /**
@@ -77,6 +79,7 @@ a {
  * 1. Remove the bottom border in Chrome 57-
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
+/* Cannot Remove! - Lg */
 abbr[title] {
   border-bottom: none;
   /* 1 */
@@ -149,6 +152,7 @@ img {
  * 1. Change the font styles in all browsers.
  * 2. Remove the margin in Firefox and Safari.
  */
+/* colors all buttons */
 button,
 input,
 optgroup,
@@ -182,6 +186,7 @@ button,
 select {
   /* 1 */
   text-transform: none;
+  background-color: #bb7e5d;
 }
 
 /**
@@ -389,6 +394,7 @@ h3 {
 
 h4 {
   font-size: 1.5rem;
+  text-align: center;
 }
 
 h5 {
@@ -699,6 +705,7 @@ a:hover {
 
 .p-5 {
   padding: 1.625rem !important;
+  border-radius: 25px;
 }
 
 /* padding-bottom */
@@ -904,7 +911,7 @@ a:hover {
 }
 
 .text-dark {
-  color: #1a1a1a !important;
+  color: #acbea3 !important;
 }
 
 .text-white {
@@ -921,19 +928,19 @@ a:hover {
 
 /* BACKGROUND UTILS */
 .bg-primary {
-  background-color: #2d3e50 !important;
+  background-color: #0d1b1e !important;
 }
 
 .bg-info {
-  background-color: #1bbc9b !important;
+  background-color: #587b7f !important;
 }
 
 .bg-danger {
-  background-color: #e64c66 !important;
+  background-color: #cbd4c2 !important;
 }
 
 .bg-light {
-  background-color: #d9e9e8 !important;
+  background-color: #660a00 !important;
 }
 
 .bg-dark {
@@ -1085,7 +1092,7 @@ a:hover {
 }
 
 .card {
-  border: 1px solid #1a1a1a;
+  border: #1a1a1a;
   margin-bottom: 1rem;
 }
 

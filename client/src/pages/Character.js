@@ -50,7 +50,7 @@ const Character = () => {
         {characters.length ? (
           <h4>Your Current Party: {characters}</h4>
         ) : (
-          <h4>Recruit some hero's to add to your party!</h4>
+          <h4>Recruit some heroes to add to your party!</h4>
         )}
       </div>
       <div className="bg-danger p-5">
