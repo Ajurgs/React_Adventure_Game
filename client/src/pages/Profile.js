@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import GameScreen from '../components/GameScreen';
-import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
+import { useGameContext } from "../utils/GlobalState";
+import { SET_COIN } from "../utils/actions";
+
+import GameScreen from "../components/GameScreen";
+import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
@@ -22,6 +25,11 @@ const Profile = () => {
 
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const profile = data?.me || data?.profile || {};
+
+  // code to try to display profile's coins
+  // const [state, dispatch] = useGameContext();
+  // const { coinBalance } = state;
+  // useEffect(() => dispatch({ type: SET_COIN, payload: coinBalance }, []));
 
   // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
@@ -44,14 +52,14 @@ const Profile = () => {
   return (
     <div>
       <h1>ADD GAME HERE</h1>
-        <GameScreen/>
-        <div className="flex-row justify-start">
-          <div className="card">
-            <Link to="/characters" type="button">
-              Characters
-            </Link>
-          </div>
+      <GameScreen />
+      <div className="flex-row justify-start">
+        <div className="card">
+          <Link to="/characters" type="button">
+            Characters
+          </Link>
         </div>
+      </div>
     </div>
   );
 };
