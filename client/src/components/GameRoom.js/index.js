@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 
 import { useGameContext } from "../../utils/GlobalState";
 
@@ -11,6 +11,8 @@ const GameRoom = () =>{
     const [state,dispatch]= useGameContext();
 
     const {currentCharacters,enemies} = state;
+    
+
     return(
         <div className="card m-3" style={Style}>
             <div className="container">

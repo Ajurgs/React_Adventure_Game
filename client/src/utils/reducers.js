@@ -3,6 +3,10 @@ import {
     ADD_CHARACTER,
     TOGGLE_GAME,
     TOGGLE_DUNGEON,
+    SET_HEROS,
+    SET_TOTAL_ROOMS,
+    SET_TURN_ORDER,
+    MAKE_ROOM
 } from './actions';
 
 
@@ -36,6 +40,29 @@ export default function reducer(state,action){
                 ...state,
                 inDungeon: !state.inDungeon
             }
+        case SET_TOTAL_ROOMS:
+            return{
+                ...state,
+                totalRooms: action.payload
+            }
+        case SET_HEROS:
+            return{
+                ...state,
+                currentCharacters: action.payload,
+            }
+        case MAKE_ROOM:{
+            break;
+        }
+        case SET_TURN_ORDER:{
+            
+
+
+
+            return{
+                ...state,
+                turnOrder: action.payload
+            }
+        }
     }
 }
 

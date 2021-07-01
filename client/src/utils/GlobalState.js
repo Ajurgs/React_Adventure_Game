@@ -9,15 +9,18 @@ const GameProvider = ({value = [], ...props})=>{
         gameRunning:false,
         inDungeon:false,
         enemies:[
-            {name:"Imp",health:10,attack:3},
-            {name:"Ork",health:15,attack:5},
-            {name:"Paul",health:1,attack:1},
+            {name:"Imp",health:10,attack:3,speed:4},
+            {name:"Ork",health:15,attack:5,speed:3},
+            {name:"Paul",health:1,attack:1,speed:8},
         ],
         currentCharacters:[
-            {name:"Dave", health:20,attack:2},
-            {name:"Jill", health:25,attack:3},
-            {name:"Carl", health:10,attack:8},
+            {name:"Dave", health:20,attack:2,speed:1},
+            {name:"Jill", health:25,attack:3,speed:4},
+            {name:"Carl", health:10,attack:8,speed:5},
         ],
+        turnOrder:[],
+        currentRoom :1,
+        totalRooms: 0,
     })
     return <Provider value={[state,dispatch]} {...props}/>;
 }
