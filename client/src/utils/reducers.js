@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer } from "react";
 import {
     ADD_CHARACTER,
     TOGGLE_GAME,
@@ -8,6 +8,9 @@ import {
     SET_TURN_ORDER,
     MAKE_ROOM,
     TAKE_TURN,
+    ADD_COIN,
+    SUBTRACT_COIN,
+    SET_COIN
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -69,10 +72,24 @@ export default function reducer(state,action){
                 whoseTurn: nextTurn(state.whoseTurn,state.turnOrder)
             }
         }
-    }
+        case ADD_COIN:
+            return {
+              ...state,
+              coinBalance: state.coinBalance + action.payload,
+            };
+        case SUBTRACT_COIN:
+            return {
+              ...state,
+              coinBalance: state.coinBalance - action.payload,
+            };
+        case SET_COIN:
+            return {
+              ...state,
+              coinBalance: action.payload,
+            };
+    } 
 }
 
-
-export function useGameReducer(initialState){
-    return useReducer(reducer,initialState);
+export function useGameReducer(initialState) {
+  return useReducer(reducer, initialState);
 }

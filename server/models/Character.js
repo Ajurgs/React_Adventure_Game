@@ -22,6 +22,10 @@ const characterSchema = new Schema({
     type: Number,
     required: true,
   },
+  speed: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Character = model("Character", characterSchema);

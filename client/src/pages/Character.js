@@ -1,7 +1,12 @@
 import React from "react";
+import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
-import { QUERY_CHARACTERS, QUERY_SINGLE_CHARACTER } from "../utils/queries";
+import {
+  QUERY_CHARACTERS,
+  QUERY_SINGLE_CHARACTER,
+  QUERY_ME,
+} from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { ADD_CHARACTER_TO_PROFILE } from "../utils/mutations";
@@ -10,7 +15,11 @@ import { ADD_CHARACTER_TO_PROFILE } from "../utils/mutations";
 // import Auth from '../../utils/auth';
 
 const Character = () => {
+  const location = useLocation();
+  const history = useHistory();
+
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
+  const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
 
   const [addCharacterToProfile, { error, data }] = useMutation(
     ADD_CHARACTER_TO_PROFILE
@@ -25,14 +34,30 @@ const Character = () => {
       console.error(error);
     }
   };
-  if (loading) {
+  if (loading || loadingMe) {
     return <div>Loading...</div>;
   }
+  const { coins, characters } = profile.me;
 
-  console.log(character);
   return (
     <div>
-      <h3> Characters</h3>
+      {location.pathname !== "/me" && (
+        <button className="btn btn-dark mb-3" onClick={() => history.goBack()}>
+          &larr; Go Back
+        </button>
+      )}
+      <div className="bg-light p-5">
+        {characters.length ? (
+          <h4>Your Current Party: {characters}</h4>
+        ) : (
+          <h4>Recruit some hero's to add to your party!</h4>
+        )}
+      </div>
+      <div className="bg-danger p-5">
+        <h1>Your remaining coins: {coins} </h1>
+        <h4>Successfully fight your way through the dungeon to earn more!</h4>
+      </div>
+      <h3>Character Shop</h3>
       <main className="flex-row justify-start">
         <div className="col-12 col-md-10 mb-5">
           {character.characters.map((hero, index) => (

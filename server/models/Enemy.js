@@ -14,6 +14,10 @@ const enemySchema = new Schema({
     type: Number,
     required: true,
   },
+  speed: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Enemy = model("Enemy", enemySchema);
