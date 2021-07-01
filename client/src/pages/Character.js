@@ -1,6 +1,6 @@
 import React from "react";
 // import {Link} from 'react-router-dom';
-import GameScreen from "../components/GameScreen";
+// import GameScreen from "../components/GameScreen";
 import { QUERY_CHARACTERS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 
@@ -8,14 +8,11 @@ import { useQuery } from "@apollo/client";
 
 // import Auth from '../../utils/auth';
 
-const Character = ({
-  id,
-  health,
-  name,
+const Character = ({ characters
 
   // class,
 }) => {
-  const { loading, data } = useQuery(QUERY_CHARACTERS);
+  const { loading, data : character } = useQuery(QUERY_CHARACTERS);
 
   //  => {
   //     if(!character.length) {
@@ -23,36 +20,28 @@ const Character = ({
   //     }
   if (loading) {
     return <div>Loading...</div>;
-  }
+  };
 
-  console.log(data);
+  console.log(character)
   return (
-    <>
-      {/* <main className="flex-row justify-start">
+    <div>
+      <h3> Characters</h3>
+       <main className="flex-row justify-start">
         <div className="col-12 col-md-10 mb-5">
-          <Character
-            name={character.name[0]}
-            health={character.health[0]}
-            // class={character.class[0]}
-          />
-        </div>
-        <button className="charc1" onClick={GameScreen}>
-          Select this Character
-        </button>
-        <button className="charc2" onClick={GameScreen}>
-          Select this Character
-        </button>
-        <button className="charc3" onClick={GameScreen}>
-          Select this Character
-        </button>
-        <button className="charc4" onClick={GameScreen}>
-          Select this Character
-        </button>
-        <button className="charc4" onClick={GameScreen}>
-          Select this Character
-        </button>
-      </main> */}
-    </>
+          {characters && characters.map((hero, index)=> (
+          <div key = {character.id} className ="card mb-3">
+<h4 className="card-header">
+{character.name}<br/>
+{character.health}<br/>
+           Zach</h4>
+          </div>
+            
+          ))}
+          </div>  
+    
+      
+      </main> 
+    </div> 
   );
 };
 export default Character;
