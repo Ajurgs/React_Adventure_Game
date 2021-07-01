@@ -5,11 +5,11 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     profiles: async () => {
-      return Profile.find();
+      return Profile.find().populate("characters");
     },
 
     profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+      return Profile.findOne({ _id: profileId }).populate("characters");
     },
 
     characters: async () => {
@@ -39,7 +39,9 @@ const resolvers = {
 
   Mutation: {
     addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
+      const profile = await Profile.create({ name, email, password }).populate(
+        "characters"
+      );
       const token = signToken(profile);
 
       return { token, profile };
@@ -92,11 +94,12 @@ const resolvers = {
             new: true,
             runValidators: true,
           }
-        );
+        ).populate("characters");
       }
       throw new AuthenticationError("You need to be logged in!");
     },
 
+    //testing resolver
     addCharacterToProfileById: async (parent, { characterId, profileId }) => {
       return Profile.findOneAndUpdate(
         { _id: profileId },
