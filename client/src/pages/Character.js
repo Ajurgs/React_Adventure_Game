@@ -70,7 +70,12 @@ const Character = () => {
                 <h4>Cost: {hero.cost}</h4>
               </div>
               <div className="card-body">
-                <button onClick={() => addCharacter(hero._id)}>Buy</button>
+                <button
+                  className="btn btn-sm-buy"
+                  onClick={() => addCharacter(hero._id)}
+                >
+                  Buy
+                </button>
               </div>
             </div>
           ))}
