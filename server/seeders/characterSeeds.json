@@ -99,5 +99,33 @@
   "attack": 15,
   "cost" : 5,
   "speed" :4
+},
+{"name" :"Peter",
+  "health" : 15,
+  "class" : "Killer Robot",
+  "attack": 20,
+  "cost" : 50,
+  "speed" : 10
+},
+{"name" :"Jon",
+  "health" : 25,
+  "class" : "Strong Man",
+  "attack": 20,
+  "cost" : 50,
+  "speed" : 12
+},
+{"name" :"Sam B",
+  "health" : 20,
+  "class" : "Ninja",
+  "attack": 15,
+  "cost" : 15,
+  "speed" : 8
+},
+{"name" :"Nick",
+  "health" : 25,
+  "class" : "Ranger",
+  "attack": 20,
+  "cost" : 75,
+  "speed" :10
 }
 ]
