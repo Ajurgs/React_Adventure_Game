@@ -2,21 +2,25 @@
   {
     "name": "500 Error",
     "health": 100,
-    "attack": 20
+    "attack": 20,
+    "speed": 10
   },
   {
     "name": "Disgruntled Developer",
     "health": 60,
-    "attack": 10
+    "attack": 10,
+    "speed": 7
   },
   {
     "name": "Petty Criminal",
     "health": 20,
-    "attack": 5
+    "attack": 5,
+    "speed": 4
   },
   {
     "name": "Dust Bunnies",
     "health": 5,
-    "attack": 1
+    "attack": 1,
+    "speed": 2
   }
 ]

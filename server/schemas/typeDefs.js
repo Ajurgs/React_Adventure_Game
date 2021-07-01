@@ -17,6 +17,7 @@ const typeDefs = gql`
     class: String
     attack: Int
     cost: Int
+    speed: Int
   }
 
   type Enemy {
@@ -24,6 +25,7 @@ const typeDefs = gql`
     name: String
     health: Int
     attack: Int
+    speed: Int
   }
 
   type Auth {
