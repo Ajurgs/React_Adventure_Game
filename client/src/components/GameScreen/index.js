@@ -1,3 +1,58 @@
+<<<<<<< HEAD
+import React,{useEffect,useState} from 'react';
+import { useGameContext } from '../../utils/GlobalState';
+import GameAction from '../GameAction';
+import GameRoom from '../GameRoom.js';
+import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,MAKE_ROOM } from '../../utils/actions';
+
+const styles = {
+    heroSelect:{
+        width:"100%"
+    }
+}
+
+const GameScreen = () =>{
+    const[formState, setFormState] = useState({
+        firstHero: "",
+        secondHero:"",
+        thirdHero:"",
+        dungeonSize:0,
+    })
+    const [state,dispatch]= useGameContext();
+    
+    useEffect(()=>{
+        console.log("roomChanged");
+    },[state.currentRoom])
+    function toggleGame(){
+        dispatch({type:TOGGLE_GAME});
+    }
+    function toggleDungeon(){
+        dispatch({type:TOGGLE_DUNGEON})
+    }
+
+    const handelChange = (event)=>{
+        const{name,value} = event.target;
+        setFormState({
+            ...formState,
+            [name]:value,
+        })
+    }
+    const handelFormSubmit = async (event) =>{
+        event.preventDefault();
+        console.log(formState);
+        try{
+            //dispatch({type:SET_HEROES, payload:[formState.firstHero,formState.secondHero,formState.thirdHero]});
+            dispatch({type:SET_TOTAL_ROOMS,payload:formState.dungeonSize});
+            dispatch({type:SET_TURN_ORDER})
+            //dispatch({type:MAKE_ROOM})
+            toggleDungeon();
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
+    if(state.gameRunning){
+=======
 import React, { useEffect, useState } from "react";
 import { useGameContext } from "../../utils/GlobalState";
 import GameAction from "../GameAction";
@@ -24,6 +79,7 @@ const GameScreen = () => {
     thirdHero: "",
     dungeonSize: 0,
   });
+>>>>>>> main
 
   const [state, dispatch] = useGameContext();
 
