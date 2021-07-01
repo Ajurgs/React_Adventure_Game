@@ -13,6 +13,7 @@ export const QUERY_PROFILES = gql`
         class
         attack
         cost
+        speed
       }
       coins
     }
@@ -31,6 +32,7 @@ export const QUERY_SINGLE_PROFILE = gql`
         class
         attack
         cost
+        speed
       }
       coins
     }
@@ -47,6 +49,7 @@ export const QUERY_CHARACTERS = gql`
       class
       attack
       cost
+      speed
     }
   }
 `;
@@ -60,6 +63,7 @@ export const QUERY_SINGLE_CHARACTER = gql`
       class
       attack
       cost
+      speed
     }
   }
 `;
@@ -72,6 +76,7 @@ export const QUERY_ENEMIES = gql`
       name
       health
       attack
+      speed
     }
   }
 `;
@@ -83,6 +88,7 @@ export const QUERY_SINGLE_ENEMY = gql`
       name
       health
       attack
+      speed
     }
   }
 `;
