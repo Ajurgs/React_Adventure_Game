@@ -5,6 +5,7 @@ import GameAction from '../GameAction';
 import GameRoom from '../GameRoom.js';
 import { useLazyQuery } from "@apollo/client";
 import {QUERY_ME,QUERY_ENEMIES} from '../../utils/queries';
+import {  chooseThreeEnemies } from "../../utils/helper";
 import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,SET_ENEMIES,TOGGLE_REWARD,RESET_GAME } from '../../utils/actions';
 
 const styles = {
@@ -57,6 +58,7 @@ const GameScreen = () =>{
         // call the lazy query for the players characters
         getCharacters();
         // Call to lazy query for the enemy data
+        getEnemies();
     }
     // quit game and rest the global state
     function quitGame(){
