@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
 import { useGameContext } from "../utils/GlobalState";
 import { RESET_GAME } from "../utils/actions";
 import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import {
   ADD_CHARACTER_TO_PROFILE,
@@ -26,29 +26,23 @@ const Character = () => {
   const [state, dispatch] = useGameContext();
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
-  const [localState, setLocalState] = useState({ currentCoins: 0 });
-   //TODO update profile coin balance when hero is purchased
-   const [updateCoinBalance, { coinError, coinData }] =
-   useMutation(UPDATE_COIN_BALANCE);
-   const [addCharacterToProfile, { error, data }] = useMutation(
+
+  //TODO update profile coin balance when hero is purchased
+  const [updateCoinBalance, { coinError, coinData }] =
+    useMutation(UPDATE_COIN_BALANCE);
+  const [addCharacterToProfile, { error, data }] = useMutation(
     ADD_CHARACTER_TO_PROFILE
   );
+
   useEffect(() => {
     dispatch({ type: RESET_GAME });
   }, []);
-  useEffect(() => {
-    console.log("got here");
-  }, [coinData]);
-  
-
-  const [updateCoinBalance, { coinError, coinData }] =
-    useMutation(UPDATE_COIN_BALANCE);
 
   if (loading || loadingMe) {
     return <div>Loading...</div>;
   }
 
-  const { coins, characters, _id } = profile.me;
+  // const { coins, characters, _id } = profile.me;
   const addCharacter = async (characterId) => {
     try {
       const { data } = await addCharacterToProfile({
@@ -60,8 +54,6 @@ const Character = () => {
     }
   };
 
- 
-
   const updateCoins = async (cost) => {
     try {
       console.log(coins - cost);
@@ -71,6 +63,7 @@ const Character = () => {
           coins: coins - cost,
         },
       });
+
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -81,13 +74,8 @@ const Character = () => {
     addCharacter(id);
     updateCoins(cost);
   };
-
-  if (loading || loadingMe) {
-    return <div>Loading...</div>;
-  }
-
   const { coins, characters, _id } = profile.me;
-  // setLocalState({ currentCoins: coins });
+
   return (
     <div>
       {location.pathname !== "/me" && (
