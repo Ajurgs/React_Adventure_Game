@@ -1034,6 +1034,7 @@ a:hover {
 }
 .btn.btn-lg-play {
   padding: 16px;
+  background-color: #484848;
 }
 
 .btn.btn-block {

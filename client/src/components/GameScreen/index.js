@@ -102,19 +102,22 @@ const GameScreen = () =>{
                             <label className="form-check-label" htmlFor="inlineRadio3">20 Room </label>
                             </div>
                         </div>
-
-                        <button type="submit">Enter Dungeon</button>
+<div className ="flex-row justify-center">
+                        <button className ="btn btn-lg-dungeon" type="submit">Enter Dungeon</button>
+                    </div>
                     </form>
-                    
-                    <button onClick={toggleGame}>quit game</button>
+                    <div className ="flex-row justify-center">
+                    <button className ="btn btn-sm-play"onClick={toggleGame}>quit game</button>
+                </div>
                 </div>
             )
         }
     }
     else{
-        return(
+        return( <div className ="flex-row justify-center">
             <div className="card">
-                <button onClick={toggleGame}>Play</button>
+                <button classname = "btn btn-lg-play" onClick={toggleGame}>Play the Game</button>
+            </div>
             </div>
         )
     }
