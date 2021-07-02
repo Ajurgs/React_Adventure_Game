@@ -15,6 +15,7 @@ This is a full-stack MERN web application. It's a turn-based game that allows th
 - [Contributors](#contributors)
 - [License](#license)
 - [Features](#features)
+- [Image Credits](#credits)
 
 ## Links
 
@@ -33,6 +34,12 @@ You must first sign-up to create a profile. You will be redirected to '/me' wher
 - [Lisa Barton](https://github.com/lisabarton23)
 - [Jared Sutch](https://github.com/JaredWilliam97)
 
+
+## Image Credits
+-[Superdark](https://superdark.itch.io/16x16-free-npc-pack)
+-[Superdark](https://superdark.itch.io/enchanted-forest-characters)
+-[0x72](https://0x72.itch.io/dungeontileset-ii)
+-AnriTool](https://anritool.itch.io/cr-tileset)
 ## License
 
 MIT

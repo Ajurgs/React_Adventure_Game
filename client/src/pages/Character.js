@@ -16,8 +16,8 @@ import {
 // import Auth from '../../utils/auth';
 const Style = {
   characterIcon: {
-    width: "50px",
-    height: "50px",
+    // width: "15%",
+    height: "25%",
   },
 };
 const Character = () => {
@@ -101,39 +101,58 @@ const Character = () => {
           </h4>
         )}
       </div>
-      <div className="bg-danger p-5">
+      <div className="bg-danger p-5 remaining-coins">
         <h1>Your remaining coins: {coins} </h1>
         <h4>Successfully fight your way through the dungeon to earn more!</h4>
       </div>
-      <h3>Hero Shop</h3>
-      <main className="flex-row justify-start">
-        <div className="col-12 col-md-10 mb-5">
-          {character.characters.map((hero, index) => (
-            <div key={index} className="card mb-3">
-              <div className="card-header">
-                <img
-                  src={process.env.PUBLIC_URL + hero.image}
-                  alt={hero.image}
-                  style={Style.characterIcon}
-                />
 
-                <h4>Name:{hero.name}</h4>
-                <h4>Health: {hero.health}</h4>
-                <h4>Class: {hero.class}</h4>
-                <h4>Attack: {hero.attack}</h4>
-                <h4>Cost: {hero.cost}</h4>
+      <h3>Hero Shop</h3>
+      {/* <main className="flex-row justify-start">
+         <div className="col-12 col-md-10 mb-5">
+        <div className="container pd-5">
+          <div className="row">
+            <div className="col"></div>
+            <div className="col"></div>
+            <div className="col"></div>
+            <div className="col"></div> */}
+
+      <main className="row">
+        <div className="col-12 d-flex justify-content-center vh-100">
+          <div className="row mx-4 d-flex align-items-center">
+            {/* <div className="col-4"> */}
+
+            {character.characters.map((hero, index) => (
+              <div key={index} className="card mb-3 character-card">
+                <div className="card-header character-card-header">
+                  <img
+                    src={process.env.PUBLIC_URL + hero.image}
+                    alt={hero.image}
+                    style={Style.characterIcon}
+                  />
+
+                  <h4>Name:{hero.name}</h4>
+                  <h5>Health: {hero.health}</h5>
+                  <h5>Class: {hero.class}</h5>
+                  <h5>Attack: {hero.attack}</h5>
+                  <h5>Cost: {hero.cost}</h5>
+                </div>
+                <div className="card-body">
+                  <button
+                    className="btn btn-sm-buy"
+                    onClick={
+                      () => buyCharacter(hero._id, hero.cost)
+                    }
+                  >
+                    Buy
+                  </button>
+                </div>
+
               </div>
-              <div className="card-body">
-                <button
-                  className="btn btn-sm-buy"
-                  onClick={() => buyCharacter(hero._id, hero.cost)}
-                >
-                  Buy
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        {/* </div> */}
+        {/* </div> */}
       </main>
     </div>
   );
