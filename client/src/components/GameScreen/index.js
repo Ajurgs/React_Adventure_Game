@@ -5,7 +5,7 @@ import GameAction from '../GameAction';
 import GameRoom from '../GameRoom.js';
 import { useLazyQuery } from "@apollo/client";
 import {QUERY_ME} from '../../utils/queries';
-import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,MAKE_ROOM,TOGGLE_REWARD } from '../../utils/actions';
+import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,MAKE_ROOM,TOGGLE_REWARD,RESET_GAME } from '../../utils/actions';
 
 const styles = {
   heroSelect: {
@@ -23,35 +23,24 @@ const GameScreen = () =>{
 
     const [state,dispatch]= useGameContext();
     const [getCharacters,{loading,data}] = useLazyQuery(QUERY_ME);
-
+    // Use Effect for when the room changes
     useEffect(()=>{
         console.log("room")
+        // go to the reward page if at the final room
         if(state.currentRoom > state.totalRooms){
             console.log("end Game");
             dispatch({type:TOGGLE_REWARD});
         }
     },[state.currentRoom])
-
+    // toggle the gameRunning bool in GlobalState
     function toggleGame(){
         dispatch({type:TOGGLE_GAME});
     }
-
+    // toggle the inDungeon bool in GlobalState
     function toggleDungeon(){
         dispatch({type:TOGGLE_DUNGEON})
     }
-
-    useEffect(() => {
-        console.log("room");
-    }, [state.currentRoom]);
-
-    function toggleGame() {
-        dispatch({ type: TOGGLE_GAME });
-    }
-
-    function toggleDungeon() {
-        dispatch({ type: TOGGLE_DUNGEON });
-    }
-
+    // set the form state on change function
     const handelChange = (event) => {
         const { name, value } = event.target;
         setFormState({
@@ -59,41 +48,54 @@ const GameScreen = () =>{
             [name]: value,
         });
     };
+    // start game function
     function startGame(){
+        // call toggleGame
         toggleGame();
+        // call the lazy query for the players characters
         getCharacters();
     }
+    // quit game and rest the global state
+    function quitGame(){
+        dispatch({type:RESET_GAME});
+    }
+    // on form submit
     const handelFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
         try {
+            // Set the global state to the current instance of the game
             //dispatch({type:SET_HEROES, payload:[formState.firstHero,formState.secondHero,formState.thirdHero]});
             dispatch({ type: SET_TOTAL_ROOMS, payload: formState.dungeonSize });
+            dispatch({type:MAKE_ROOM})
             dispatch({ type: SET_TURN_ORDER });
-            //dispatch({type:MAKE_ROOM})
             toggleDungeon();
         } catch (error) {
             console.error(error);
         }
     }
+
+// what to do if the global state gameRunning is true
 if (state.gameRunning) {
+    // if loading from the getCharacters function 
     if(loading){
         return(
             <p>loading...</p>
         )
     }
+    // if the inDungeon Global State is true
     if (state.inDungeon) {
+        // return the Game room and action bar
       return (
         <div className="card">
           <GameRoom />
           <GameAction />
-          <button className="btn btn-sm-end" onClick={toggleGame}>
+          <button className="btn btn-sm-end" onClick={quitGame}>
             Quit Game
           </button>
         </div>
       );
     } else {
-      // select team and dungeon
+      // select team and dungeon size
       if(data&& data.me){
           const {characters}= data.me;
 
@@ -210,16 +212,18 @@ if (state.gameRunning) {
             );
         }
     // }
+    // if the data from the query has not returned yet
     else{
         return(
             <p>loading...</p>
             )
         }
     }
-} 
+}
+// if not gameRunning  
 else 
-
 {
+    // give option to start the game
     return (
       <div className="flex-row justify-center">
         <div className="card">
