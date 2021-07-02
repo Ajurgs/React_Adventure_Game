@@ -56,7 +56,7 @@ const Profile = () => {
             <h4>Your Hero Roster:</h4>
             <ul>
               {characters.map((hero, index) => (
-                <li>
+                <li key={index}>
                   {hero.name} the {hero.class}
                 </li>
               ))}

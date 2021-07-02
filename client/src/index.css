@@ -22,6 +22,14 @@ body {
   margin: 0;
   background-color: #b2a198;
 }
+.battle-log {
+  margin-top: 5px;
+  padding: 30px 40px;
+  border: 2px solid #2d3e50;
+  border-radius: 4px;
+  color: #2d3e50;
+  font-weight: bold;
+}
 
 /**
  * Render the `main` element consistently in IE.
@@ -997,6 +1005,10 @@ a:hover {
 .btn.btn-sm-quit {
   background-color: #bb7e5d;
   margin-top: 20px;
+}
+.btn.btn-sm-end-one {
+  background-color: #bb7e5d;
+  margin-left: 1020px;
 }
 .btn.btn-sm-end {
   background-color: #bb7e5d;

@@ -18,6 +18,10 @@ const enemySchema = new Schema({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+  }
 });
 
 const Enemy = model("Enemy", enemySchema);

@@ -3,7 +3,10 @@ import React,{useState,useEffect} from "react";
 import { useGameContext } from "../../utils/GlobalState";
 
 const Style={
-    minHeight:"400px"
+
+  gameroom:  {minHeight:"400px"},
+  characterIcon :{height:"25%"},
+  enemyIcon :{height:"25%"},
 }
 
 const GameRoom = () =>{
@@ -13,14 +16,14 @@ const GameRoom = () =>{
     const {currentCharacters,enemies} = state;
     if(state.betweenRooms){
         return(
-            <div className="card m-3" style={Style}>
+            <div className="card m-3" style={Style.gameroom}>
                 <h1>Populating Room</h1>
             </div>
         )
     }
     if(state.rewardRoom){
         return(
-            <div className="card m-3" style={Style}>
+            <div className="card m-3" style={Style.gameroom}>
                 <h1>You Have Entered The Treasure Room</h1>
                 <h2>Claim Your Reward</h2>
                 <h3>Your Exploration Has Uncovered {state.totalRooms} Coins </h3>
@@ -29,7 +32,7 @@ const GameRoom = () =>{
     }
     if(state.looseScreen){
         return(
-            <div className="card m-3" style={Style}>
+            <div className="card m-3" style={Style.gameroom}>
                 <h1>The Heroes Are No More</h1>
                 <h2>All that remains are bones</h2>
                 <h3>Others may Try To seek Riches</h3>
@@ -37,7 +40,7 @@ const GameRoom = () =>{
         )
     }
     return(
-        <div className="card m-3" style={Style}>
+        <div className="card m-3" style={Style.gameroom}>
             <div className="container">
                 <div className="row justify-space-between">
                     <div className="col-3 ">
@@ -45,7 +48,10 @@ const GameRoom = () =>{
                     {currentCharacters.map((hero,index)=>(
                         <div key={index}className="card">
                             <div className="card-header">
+                                <img src = {process.env.PUBLIC_URL + hero.image} alt = "hero image" style ={Style.characterIcon}/>
+                                    
                                 <h5>
+                                
                                     {hero.name}
                                 </h5>
                             </div>
@@ -60,6 +66,7 @@ const GameRoom = () =>{
                     {enemies.map((enemy,index)=>(
                         <div key={index}className="card">
                             <div className="card-header">
+                            <img src = {process.env.PUBLIC_URL + enemy.image} alt = "enemy image" style ={Style.enemyIcon}/>
                                 <h5>
                                     {enemy.name}
                                 </h5>
