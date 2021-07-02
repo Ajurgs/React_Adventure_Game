@@ -55,9 +55,9 @@
     "image": "/assets/zombie.png"
   },
   {
-    "name": "Josh Grammar",
+    "name": "Josh",
     "health": 10,
-    "class": "Grammar Master",
+    "class": "Scrum Daddy",
     "attack": 10,
     "cost": 5,
     "speed": 3,
@@ -136,7 +136,7 @@
     "image": "/assets/strongMan.png"
   },
   {
-    "name": "Sam B",
+    "name": "Ginger",
     "health": 20,
     "class": "Ninja",
     "attack": 15,
@@ -194,8 +194,71 @@
     "health": 25,
     "class": "Bard",
     "attack": 10,
-    "cost": 0,
+    "cost": 5,
     "speed": 10,
     "image": "/assets/bard.png"
+  },
+  {
+    "name": "Tiffany",
+    "health": 20,
+    "class": "Environmentalist",
+    "attack": 10,
+    "cost": 0,
+    "speed": 10,
+    "image": "/assets/environmentalist.png"
+  },
+  {
+    "name": "Corey",
+    "health": 65,
+    "class": "Werewolf",
+    "attack": 50,
+    "cost": 500,
+    "speed": 100,
+    "image": "/assets/werewolf.png"
+  },
+  {
+    "name": "Dane",
+    "health": 25,
+    "class": "lord",
+    "attack": 30,
+    "cost": 30,
+    "speed": 10,
+    "image": "/assets/boyChar.png"
+  },
+  {
+    "name": "Hutson",
+    "health": 25,
+    "class": "Shape Shifter",
+    "attack": 10,
+    "cost": 0,
+    "speed": 10,
+    "image": "/assets/boyHero.png"
+  },
+  {
+    "name": "Ryan",
+    "health": 25,
+    "class": "Druid",
+    "attack": 90,
+    "cost": 65,
+    "speed": 100,
+    "image": "/assets/wizard.png"
+  },
+  {
+    "name": "Bo",
+    "health": 25,
+    "class": "monk",
+    "attack": 10,
+    "cost": 0,
+    "speed": 10,
+    "image": "/assets/monk.png"
+  },
+  {
+    "name": "Sam",
+    "health": 25,
+    "class": "Forest Guardian",
+    "attack": 90,
+    "cost": 20,
+    "speed": 10,
+    "image": "/assets/forestGuardian.png"
   }
 ]
