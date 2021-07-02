@@ -13,8 +13,8 @@ export const ADD_PROFILE = gql`
 `;
 
 export const UPDATE_COIN_BALANCE = gql`
-  mutation updateCoinBalance($profileId: ID!, $updatedCoins: Int!) {
-    updateCoinBalance(profileId: $profileId, coins: $updatedCoins) {
+  mutation updateCoinBalance($profileId: ID!, $coins: Int!) {
+    updateCoinBalance(profileId: $profileId, coins: $coins) {
       coins
     }
   }
