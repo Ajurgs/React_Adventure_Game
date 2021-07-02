@@ -101,7 +101,7 @@ const GameAction = () => {
     dispatch({ type: TAKE_TURN });
   }
   function openDoor(enemies) {
-    const newEnemies = chooseThreeEnemies(enemies, dispatch);
+    const newEnemies = chooseThreeEnemies(enemies);
     dispatch({ type: SET_ENEMIES, payload: newEnemies });
     setAction("choose");
     dispatch({ type: NEXT_ROOM });
