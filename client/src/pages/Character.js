@@ -17,7 +17,7 @@ import {
 const Style = {
   characterIcon: {
     // width: "15%",
-    height: "15%",
+    height: "25%",
   },
 };
 const Character = () => {
@@ -85,7 +85,7 @@ const Character = () => {
           <h4 className="recruit">Recruit some heroes to add to your party!</h4>
         )}
       </div>
-      <div className="bg-danger p-5">
+      <div className="bg-danger p-5 remaining-coins">
         <h1>Your remaining coins: {coins} </h1>
         <h4>Successfully fight your way through the dungeon to earn more!</h4>
       </div>
@@ -114,10 +114,10 @@ const Character = () => {
                   />
 
                   <h4>Name:{hero.name}</h4>
-                  <h4>Health: {hero.health}</h4>
-                  <h4>Class: {hero.class}</h4>
-                  <h4>Attack: {hero.attack}</h4>
-                  <h4>Cost: {hero.cost}</h4>
+                  <h5>Health: {hero.health}</h5>
+                  <h5>Class: {hero.class}</h5>
+                  <h5>Attack: {hero.attack}</h5>
+                  <h5>Cost: {hero.cost}</h5>
                 </div>
                 <div className="card-body">
                   <button
