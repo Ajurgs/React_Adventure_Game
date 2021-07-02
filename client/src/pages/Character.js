@@ -89,7 +89,7 @@ const Character = () => {
             <h4>Your Hero Roster:</h4>
             <ul>
               {characters.map((hero, index) => (
-                <li>
+                <li key={index}>
                   {hero.name} the {hero.class}
                 </li>
               ))}
@@ -139,14 +139,11 @@ const Character = () => {
                 <div className="card-body">
                   <button
                     className="btn btn-sm-buy"
-                    onClick={
-                      () => buyCharacter(hero._id, hero.cost)
-                    }
+                    onClick={() => buyCharacter(hero._id, hero.cost)}
                   >
                     Buy
                   </button>
                 </div>
-
               </div>
             ))}
           </div>
