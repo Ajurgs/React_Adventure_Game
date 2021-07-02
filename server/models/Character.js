@@ -26,6 +26,10 @@ const characterSchema = new Schema({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+  }
 });
 
 const Character = model("Character", characterSchema);

@@ -3,24 +3,77 @@
     "name": "500 Error",
     "health": 100,
     "attack": 20,
-    "speed": 10
+    "speed": 10,
+    "image": "/assets/E500.png"
   },
   {
     "name": "Disgruntled Developer",
     "health": 60,
     "attack": 10,
-    "speed": 7
+    "speed": 7,
+    "image": "/assets/disgruntledDeveloper.png"
   },
   {
-    "name": "Petty Criminal",
+    "name": "Evil Scrum Master",
     "health": 20,
     "attack": 5,
-    "speed": 4
+    "speed": 4,
+    "image": "/assets/evilScrumMaster.png"
   },
   {
-    "name": "Dust Bunnies",
+    "name": "ERROR 404",
     "health": 5,
     "attack": 1,
-    "speed": 2
+    "speed": 2,
+    "image": "/assets/E404.png"
+  },
+  {
+    "name": "Boiler Plate",
+    "health": 5,
+    "attack": 1,
+    "speed": 2,
+    "image": "/assets/boilerPlate.png"
+  },
+  {
+    "name": "Bug Fix",
+    "health": 5,
+    "attack": 1,
+    "speed": 2,
+    "image": "/assets/bugFix.png"
+  },
+  {
+    "name": "Copy Pasta",
+    "health": 5,
+    "attack": 1,
+    "speed": 2,
+    "image": "/assets/copyPasta.png"
+  },
+  {
+    "name": "Activity Commenting",
+    "health": 5,
+    "attack": 1,
+    "speed": 2,
+    "image": "/assets/comments.png"
+  },
+  {
+    "name": "CSS",
+    "health": 5,
+    "attack": 1,
+    "speed": 2,
+    "image": "/assets/css.png"
+  },
+  {
+    "name": "Merge Conflicts",
+    "health": 5,
+    "attack": 1,
+    "speed": 2,
+    "image": "/assets/mergeConflicts.png"
+  },
+  {
+    "name": "API's",
+    "health": 5,
+    "attack": 1,
+    "speed": 2,
+    "image": "/assets/apiDemon.png"
   }
 ]
