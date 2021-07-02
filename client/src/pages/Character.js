@@ -1,7 +1,9 @@
-import React from "react";
+import React,{useEffect}from "react";
 import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
+import { useGameContext } from '../utils/GlobalState';
+import { TOGGLE_GAME } from "../utils/actions";
 import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
@@ -21,10 +23,13 @@ const Style = {
 const Character = () => {
   const location = useLocation();
   const history = useHistory();
-
+  const [state,dispatch] = useGameContext();
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
 
+  useEffect(()=>{
+    dispatch({type:TOGGLE_GAME})
+  },[])
   const [addCharacterToProfile, { error, data }] = useMutation(
     ADD_CHARACTER_TO_PROFILE
   );

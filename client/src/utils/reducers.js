@@ -18,6 +18,9 @@ import {
     TOGGLE_BETWEEN_ROOM,
     SET_ENEMIES,
     TOGGLE_REWARD,
+    RESET_GAME,
+    TOGGLE_LOSE,
+    TOGGLE_RETREAT
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -62,6 +65,18 @@ export default function reducer(state,action){
             return{
                 ...state,
                 rewardRoom : !state.rewardRoom,
+            }
+        }
+        case TOGGLE_LOSE:{
+            return{
+                ...state,
+                looseScreen: !state.looseScreen,
+            }
+        }
+        case TOGGLE_RETREAT:{
+            return{
+                ...state,
+                retreatScreen: !state.retreatScreen,
             }
         }
         case SET_TOTAL_ROOMS:
@@ -136,7 +151,22 @@ export default function reducer(state,action){
                 currentRoom: state.currentRoom++,
             }
         }
+        case RESET_GAME:{
+            return{
+                ...state,
+                gameRunning:false,
+                inDungeon:false,
+                betweenRooms:false,
+                rewardRoom:false,
+                looseScreen:false,
+                retreatScreen:false,
+                turnOrder:[],
+                currentRoom:1,
+                totalRooms:1,
+                whoseTurn:0,
+            }
         }
+    }
 }
 
 export function useGameReducer(initialState) {

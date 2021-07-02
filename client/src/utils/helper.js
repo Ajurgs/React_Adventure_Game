@@ -20,17 +20,18 @@ export function nextTurn(current,turnOrder) {
 
 
 export function makeAttack(damage,target,dispatch){
-    
-    console.log(target);
-    target.health -= damage
-    if(target.health <= 0){
-        if(target.ai){
-            dispatch({type:REMOVE_ENEMY,payload:target._id});
-        }else{
-            dispatch({type:REMOVE_HERO,payload:target._id});
+    if(target){
+        console.log(target);
+        target.health -= damage
+        if(target.health <= 0){
+            if(target.ai){
+                dispatch({type:REMOVE_ENEMY,payload:target._id});
+            }else{
+                dispatch({type:REMOVE_HERO,payload:target._id});
+            }
+            dispatch({type:REMOVE_FROM_TURN,payload:target._id});
+            
         }
-        dispatch({type:REMOVE_FROM_TURN,payload:target._id});
-        
     }
 }
 
@@ -41,7 +42,7 @@ export function chooseThreeEnemies(enemies,dispatch){
     const firstEnemy = enemies[Math.floor(Math.random()*enemies.length)];
     const secondEnemy = enemies[Math.floor(Math.random()*enemies.length)];
     const thirdEnemy = enemies[Math.floor(Math.random()*enemies.length)];
-    const newEnemies = [firstEnemy,secondEnemy,thirdEnemy];
+    const newEnemies = [{...firstEnemy,ai:true},{...secondEnemy,ai:true},{...thirdEnemy,ai:true}];
     console.log(newEnemies);
     return(newEnemies);
 }
