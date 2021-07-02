@@ -41,7 +41,7 @@ const resolvers = {
 
   Mutation: {
     addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password })
+      const profile = await Profile.create({ name, email, password });
       const token = signToken(profile);
 
       return { token, profile };
@@ -96,7 +96,7 @@ const resolvers = {
           { _id: context.user._id },
           {
             $addToSet: {
-              characters: { characterId },
+              characters: characterId,
             },
           },
           {

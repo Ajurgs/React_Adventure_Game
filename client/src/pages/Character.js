@@ -1,8 +1,8 @@
-import React,{useEffect}from "react";
+import React, { useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
-import { useGameContext } from '../utils/GlobalState';
+import { useGameContext } from "../utils/GlobalState";
 import { RESET_GAME } from "../utils/actions";
 import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
 import { useQuery } from "@apollo/client";
@@ -23,14 +23,14 @@ const Style = {
 const Character = () => {
   const location = useLocation();
   const history = useHistory();
-  const [state,dispatch] = useGameContext();
+  const [state, dispatch] = useGameContext();
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
 
-  useEffect(()=>{
-    dispatch({type:RESET_GAME})
-  },[])
-  
+  useEffect(() => {
+    dispatch({ type: RESET_GAME });
+  }, []);
+
   const [addCharacterToProfile, { error, data }] = useMutation(
     ADD_CHARACTER_TO_PROFILE
   );
@@ -40,13 +40,11 @@ const Character = () => {
       const { data } = await addCharacterToProfile({
         variables: { characterId },
       });
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error(error);
     }
   };
-
-  const { coins, characters, _id } = profile.me;
 
   //TODO update profile coin balance when hero is purchased
   const [updateCoinBalance, { coinError, coinData }] =
@@ -67,9 +65,16 @@ const Character = () => {
     }
   };
 
+  const buyCharacter = (id, cost) => {
+    addCharacter(id);
+    updateCoins(cost);
+  };
+
   if (loading || loadingMe) {
     return <div>Loading...</div>;
   }
+
+  const { coins, characters, _id } = profile.me;
 
   return (
     <div>
@@ -110,9 +115,7 @@ const Character = () => {
               <div className="card-body">
                 <button
                   className="btn btn-sm-buy"
-                  onClick={
-                    (() => addCharacter(hero._id), () => updateCoins(hero.cost))
-                  }
+                  onClick={() => buyCharacter(hero._id, hero.cost)}
                 >
                   Buy
                 </button>
