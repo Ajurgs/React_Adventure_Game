@@ -27,6 +27,7 @@ const typeDefs = gql`
     health: Int
     attack: Int
     speed: Int
+    image: String
   }
 
   type Auth {
