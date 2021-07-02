@@ -6,7 +6,6 @@ import {
     SET_HEROES,
     SET_TOTAL_ROOMS,
     SET_TURN_ORDER,
-    MAKE_ROOM,
     TAKE_TURN,
     ADD_COIN,
     SUBTRACT_COIN,
@@ -93,11 +92,6 @@ export default function reducer(state,action){
             return{
                 ...state,
                 enemies: action.payload,
-            }
-        }
-        case MAKE_ROOM:{
-            return{
-                ...state
             }
         }
         case SET_TURN_ORDER:{
