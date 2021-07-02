@@ -1,6 +1,6 @@
 
 import React,{useState,useEffect} from "react";
-import { TAKE_TURN,NEXT_ROOM,SET_ENEMIES, ADD_COIN,TOGGLE_GAME } from "../../utils/actions";
+import { TAKE_TURN,NEXT_ROOM,SET_ENEMIES, ADD_COIN,TOGGLE_LOSE,RESET_GAME } from "../../utils/actions";
 
 
 import { useGameContext } from "../../utils/GlobalState";
@@ -40,6 +40,7 @@ const GameAction = () => {
     if (currentCharacters.length === 0) {
         // you lose
         console.log("YOU LOSE!!!!");
+        dispatch({type:TOGGLE_LOSE});
     }
     if (enemies.length === 0) {
     // clear the room
@@ -51,9 +52,15 @@ const GameAction = () => {
   function exitDungeon() 
     {
       dispatch({type:ADD_COIN,payload:state.totalRooms})
-      dispatch({type:TOGGLE_GAME});
+      dispatch({type:RESET_GAME});
     }
-
+    if(state.looseScreen){
+      return(
+        <>
+        <button onClick={()=>dispatch({type:RESET_GAME})}>Return To Main Menu</button>
+        </>
+      )
+    }
     if(state.rewardRoom){
         return(
             <>

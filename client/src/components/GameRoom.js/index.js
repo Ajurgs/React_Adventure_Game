@@ -27,6 +27,15 @@ const GameRoom = () =>{
             </div>
         )
     }
+    if(state.looseScreen){
+        return(
+            <div className="card m-3" style={Style}>
+                <h1>The Heroes Are No More</h1>
+                <h2>All that remains are bones</h2>
+                <h3>Others may Try To seek Riches</h3>
+            </div>
+        )
+    }
     return(
         <div className="card m-3" style={Style}>
             <div className="container">

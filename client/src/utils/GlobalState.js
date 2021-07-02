@@ -10,6 +10,8 @@ const GameProvider = ({value = [], ...props})=>{
         inDungeon:false,
         betweenRooms:false,
         rewardRoom:false,
+        looseScreen:false,
+        retreatScreen:false,
         enemies:[
             {_id:"003",name:"Paul",health:1,attack:1,speed:8,ai:true},
         ],

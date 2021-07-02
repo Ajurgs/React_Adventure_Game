@@ -97,17 +97,17 @@ if (state.gameRunning) {
       if(data&& data.me){
           const {characters}= data.me;
 
-          if(characters.length < 3){
-              return(
-                  <div className="card">
+        //   if(characters.length < 3){
+        //       return(
+        //           <div className="card">
 
-                    <h1>You Need More Heroes To Enter</h1>
-                    <h2>You need at least 3 heroes to enter</h2>
-                    <h2>You currently have {characters.length} heros</h2>
-                  </div>
-              )
-          }
-          else{
+        //             <h1>You Need More Heroes To Enter</h1>
+        //             <h2>You need at least 3 heroes to enter</h2>
+        //             <h2>You currently have {characters.length} heros</h2>
+        //           </div>
+        //       )
+        //   }
+        //   else{
             return (
             <div className="card">
                 <form className="container" onSubmit={handelFormSubmit}>
@@ -209,7 +209,7 @@ if (state.gameRunning) {
             </div>
             );
         }
-    }
+    // }
     else{
         return(
             <p>loading...</p>
