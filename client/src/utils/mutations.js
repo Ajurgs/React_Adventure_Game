@@ -21,10 +21,10 @@ export const UPDATE_COIN_BALANCE = gql`
 `;
 
 export const ADD_CHARACTER_TO_PROFILE = gql`
-  mutation addCharacterToProfile($character: ID!) {
-    addCharacterToProfile(characters: $character) {
-      token
-      character {
+  mutation addCharacterToProfile($characterId: ID!) {
+    addCharacterToProfile(characterId: $characterId) {
+      name
+      characters {
         _id
         name
         health
