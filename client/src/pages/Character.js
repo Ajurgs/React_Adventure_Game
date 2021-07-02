@@ -26,14 +26,20 @@ const Character = () => {
   const [state, dispatch] = useGameContext();
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
-  const [localState, setLocalState] = useState({currentCoins: 0});
+  const [localState, setLocalState] = useState({ currentCoins: 0 });
+   //TODO update profile coin balance when hero is purchased
+   const [updateCoinBalance, { coinError, coinData }] =
+   useMutation(UPDATE_COIN_BALANCE);
+   const [addCharacterToProfile, { error, data }] = useMutation(
+    ADD_CHARACTER_TO_PROFILE
+  );
   useEffect(() => {
     dispatch({ type: RESET_GAME });
   }, []);
-
-  const [addCharacterToProfile, { error, data }] = useMutation(
-    ADD_CHARACTER_TO_PROFILE
-  );
+  useEffect(() => {
+    console.log("got here");
+  }, [coinData]);
+  
 
   const addCharacter = async (characterId) => {
     try {
@@ -46,9 +52,7 @@ const Character = () => {
     }
   };
 
-  //TODO update profile coin balance when hero is purchased
-  const [updateCoinBalance, { coinError, coinData }] =
-    useMutation(UPDATE_COIN_BALANCE);
+ 
 
   const updateCoins = async (cost) => {
     console.log("updating coin balance");
@@ -75,7 +79,7 @@ const Character = () => {
   }
 
   const { coins, characters, _id } = profile.me;
-  
+  // setLocalState({ currentCoins: coins });
   return (
     <div>
       {location.pathname !== "/me" && (
