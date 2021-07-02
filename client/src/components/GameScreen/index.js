@@ -4,8 +4,8 @@ import { useGameContext } from '../../utils/GlobalState';
 import GameAction from '../GameAction';
 import GameRoom from '../GameRoom.js';
 import { useLazyQuery } from "@apollo/client";
-import {QUERY_ME} from '../../utils/queries';
-import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,MAKE_ROOM,TOGGLE_REWARD,RESET_GAME } from '../../utils/actions';
+import {QUERY_ME,QUERY_ENEMIES} from '../../utils/queries';
+import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,SET_ENEMIES,TOGGLE_REWARD,RESET_GAME } from '../../utils/actions';
 
 const styles = {
   heroSelect: {
@@ -23,6 +23,8 @@ const GameScreen = () =>{
 
     const [state,dispatch]= useGameContext();
     const [getCharacters,{loading,data}] = useLazyQuery(QUERY_ME);
+    const [getEnemies,{loading:loadingEnemies,data:enemyData}]= useLazyQuery(QUERY_ENEMIES);
+
     // Use Effect for when the room changes
     useEffect(()=>{
         console.log("room")
@@ -54,6 +56,7 @@ const GameScreen = () =>{
         toggleGame();
         // call the lazy query for the players characters
         getCharacters();
+        // Call to lazy query for the enemy data
     }
     // quit game and rest the global state
     function quitGame(){
@@ -66,7 +69,8 @@ const GameScreen = () =>{
             // Set the global state to the current instance of the game
             //dispatch({type:SET_HEROES, payload:[formState.firstHero,formState.secondHero,formState.thirdHero]});
             dispatch({ type: SET_TOTAL_ROOMS, payload: formState.dungeonSize });
-            dispatch({type:MAKE_ROOM})
+            const newEnemies = chooseThreeEnemies(enemyData.enemies);
+            dispatch({ type: SET_ENEMIES, payload: newEnemies });
             dispatch({ type: SET_TURN_ORDER });
             toggleDungeon();
         } catch (error) {
@@ -77,7 +81,7 @@ const GameScreen = () =>{
 // what to do if the global state gameRunning is true
 if (state.gameRunning) {
     // if loading from the getCharacters function 
-    if(loading){
+    if(loading || loadingEnemies){
         return(
             <p>loading...</p>
         )
@@ -96,7 +100,7 @@ if (state.gameRunning) {
       );
     } else {
       // select team and dungeon size
-      if(data&& data.me){
+      if(data&& data.me && enemyData && enemyData.enemies){
           const {characters}= data.me;
 
         //   if(characters.length < 3){
@@ -212,7 +216,7 @@ if (state.gameRunning) {
             );
         }
     // }
-    // if the data from the query has not returned yet
+    // if the data from the queries has not returned yet
     else{
         return(
             <p>loading...</p>

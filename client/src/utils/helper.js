@@ -37,7 +37,7 @@ export function makeAttack(damage,target,dispatch){
 
 
 
-export function chooseThreeEnemies(enemies,dispatch){
+export function chooseThreeEnemies(enemies){
     console.log(enemies)
     const firstEnemy = enemies[Math.floor(Math.random()*enemies.length)];
     const secondEnemy = enemies[Math.floor(Math.random()*enemies.length)];
