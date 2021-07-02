@@ -40,13 +40,11 @@ const Character = () => {
       const { data } = await addCharacterToProfile({
         variables: { characterId },
       });
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error(error);
     }
   };
-
-  const { coins, characters, _id } = profile.me;
 
   //TODO update profile coin balance when hero is purchased
   const [updateCoinBalance, { coinError, coinData }] =
@@ -67,9 +65,16 @@ const Character = () => {
     }
   };
 
+  const buyCharacter = (id, cost) => {
+    addCharacter(id);
+    updateCoins(cost);
+  };
+
   if (loading || loadingMe) {
     return <div>Loading...</div>;
   }
+
+  const { coins, characters, _id } = profile.me;
 
   return (
     <div>
@@ -80,16 +85,28 @@ const Character = () => {
       )}
       <div className="bg-light p-5">
         {characters.length ? (
-          <h4>Your Current Party: {characters}</h4>
+          <>
+            <h4>Your Hero Roster:</h4>
+            <ul>
+              {characters.map((hero, index) => (
+                <li>
+                  {hero.name} the {hero.class}
+                </li>
+              ))}
+            </ul>
+          </>
         ) : (
-          <h4 className="recruit">Recruit some heroes to add to your party!</h4>
+          <h4 className="recruit">
+            Recruit some heroes to add to your roster!
+          </h4>
         )}
       </div>
       <div className="bg-danger p-5 remaining-coins">
         <h1>Your remaining coins: {coins} </h1>
         <h4>Successfully fight your way through the dungeon to earn more!</h4>
       </div>
-      <h3>Character Shop</h3>
+
+      <h3>Hero Shop</h3>
       {/* <main className="flex-row justify-start">
          <div className="col-12 col-md-10 mb-5">
         <div className="container pd-5">
@@ -123,13 +140,13 @@ const Character = () => {
                   <button
                     className="btn btn-sm-buy"
                     onClick={
-                      (() => addCharacter(hero._id),
-                      () => updateCoins(hero.cost))
+                      () => buyCharacter(hero._id, hero.cost)
                     }
                   >
                     Buy
                   </button>
                 </div>
+
               </div>
             ))}
           </div>

@@ -26,7 +26,7 @@ const Profile = () => {
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const profile = data?.me || data?.profile || {};
 
-  // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
+  // // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
     return <Redirect to="/me" />;
   }
@@ -34,6 +34,7 @@ const Profile = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+  console.log(profile);
 
   if (!profile?.name) {
     return (
@@ -43,17 +44,28 @@ const Profile = () => {
       </h4>
     );
   }
-  console.log(profile);
   const { name, coins, characters } = profile;
+
   return (
     <div>
       <div className="bg-light p-5">
         <h1>Hello {name}!</h1>
         <h4>Coin Balance: {coins}</h4>
         {characters.length ? (
-          <h4>Your Current Party: {characters}</h4>
+          <>
+            <h4>Your Hero Roster:</h4>
+            <ul>
+              {characters.map((hero, index) => (
+                <li>
+                  {hero.name} the {hero.class}
+                </li>
+              ))}
+            </ul>
+          </>
         ) : (
-          <h4>Recruit some hero's to add to your party!</h4>
+          <h4 className="recruit">
+            Recruit more heroes to add to your roster!
+          </h4>
         )}
         <div className="flex-row justify-start">
           <div>
@@ -62,7 +74,7 @@ const Profile = () => {
               type="button"
               className="bg-info p-5 m-2 text-light btn"
             >
-              Character Shop
+              Hero Shop
             </Link>
           </div>
         </div>
