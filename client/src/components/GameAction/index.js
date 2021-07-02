@@ -1,7 +1,11 @@
-
-import React,{useState,useEffect} from "react";
-import { TAKE_TURN,NEXT_ROOM,SET_ENEMIES, ADD_COIN,TOGGLE_GAME } from "../../utils/actions";
-
+import React, { useState, useEffect } from "react";
+import {
+  TAKE_TURN,
+  NEXT_ROOM,
+  SET_ENEMIES,
+  ADD_COIN,
+  TOGGLE_GAME,
+} from "../../utils/actions";
 
 import { useGameContext } from "../../utils/GlobalState";
 import { QUERY_ENEMIES } from "../../utils/queries";
@@ -9,70 +13,67 @@ import { useLazyQuery } from "@apollo/client";
 import { makeAttack, chooseThreeEnemies } from "../../utils/helper";
 
 const GameAction = () => {
-    const [state, dispatch] = useGameContext();
-    
-    const [action, setAction] = useState("choose");
+  const [state, dispatch] = useGameContext();
 
-    const [getEnemies, { loading, data }] = useLazyQuery(QUERY_ENEMIES);
-    
-    const { enemies, turnOrder, whoseTurn, currentCharacters } = state;
-    
-    useEffect(() => {
-        console.log("in Use Effect");
-        if (turnOrder[whoseTurn].ai) {
+  const [action, setAction] = useState("choose");
+
+  const [getEnemies, { loading, data }] = useLazyQuery(QUERY_ENEMIES);
+
+  const { enemies, turnOrder, whoseTurn, currentCharacters } = state;
+
+  useEffect(() => {
+    console.log("in Use Effect");
+    if (turnOrder[whoseTurn].ai) {
       const timer = setTimeout(() => {
-          console.log(`${turnOrder[whoseTurn].name} has taken their turn`);
-          let target = Math.floor(Math.random() * state.currentCharacters.length);
-          console.log(target);
+        console.log(`${turnOrder[whoseTurn].name} has taken their turn`);
+        let target = Math.floor(Math.random() * state.currentCharacters.length);
+        console.log(target);
         makeAttack(
-            turnOrder[whoseTurn].attack,
-            currentCharacters[target],
-            dispatch
-            );
-            dispatch({ type: TAKE_TURN });
-        }, 1000);
-        return () => clearTimeout(timer);
+          turnOrder[whoseTurn].attack,
+          currentCharacters[target],
+          dispatch
+        );
+        dispatch({ type: TAKE_TURN });
+      }, 1000);
+      return () => clearTimeout(timer);
     }
-    
-}, [state.whoseTurn]);
+  }, [state.whoseTurn]);
 
-    useEffect(() => {
+  useEffect(() => {
     if (currentCharacters.length === 0) {
-        // you lose
-        console.log("YOU LOSE!!!!");
+      // you lose
+      console.log("YOU LOSE!!!!");
     }
     if (enemies.length === 0) {
-    // clear the room
-    // ask if you want to continue
-    setAction("nextRoom");
+      // clear the room
+      // ask if you want to continue
+      setAction("nextRoom");
     }
-    }, [state.enemies.length, state.currentCharacters.length]);
-  
-  function exitDungeon() 
-    {
-      dispatch({type:ADD_COIN,payload:state.totalRooms})
-      dispatch({type:TOGGLE_GAME});
-    }
+  }, [state.enemies.length, state.currentCharacters.length]);
 
-    if(state.rewardRoom){
-        return(
-            <>
-            <button onClick={()=>exitDungeon()}>Exit Dungeon</button>
-            </>
-        )
-    }
-    
-    if(turnOrder[whoseTurn].ai){
-        // take the ai's turn
-        console.log("ai turn");
-        
-        return(
-            <div>
-                <h4>Please Wait while AI Makes its move</h4>
-            </div>
-        )
-    }
+  function exitDungeon() {
+    dispatch({ type: ADD_COIN, payload: state.totalRooms });
+    dispatch({ type: TOGGLE_GAME });
+  }
 
+  if (state.rewardRoom) {
+    return (
+      <>
+        <button onClick={() => exitDungeon()}>Exit Dungeon</button>
+      </>
+    );
+  }
+
+  if (turnOrder[whoseTurn].ai) {
+    // take the ai's turn
+    console.log("ai turn");
+
+    return (
+      <div>
+        <h4>Please Wait while AI Makes its move</h4>
+      </div>
+    );
+  }
 
   function setLoading() {
     console.log("load enemies");
@@ -125,18 +126,32 @@ const GameAction = () => {
         return (
           <>
             {enemies.map((enemy, index) => (
-              <button key={index} onClick={() => handelAttack(index)}>
+              <button
+                className="btn btn-sm-enemy"
+                key={index}
+                onClick={() => handelAttack(index)}
+              >
                 {enemy.name}
               </button>
             ))}
-            <button onClick={() => setAction("choose")}>Cancel</button>
+            <button
+              className="btn btn-sm-cancel"
+              onClick={() => setAction("choose")}
+            >
+              Cancel
+            </button>
           </>
         );
       }
       case "skill": {
         return (
           <>
-            <button onClick={() => setAction("choose")}>Cancel</button>
+            <button
+              className="btn btn-sm-cancel-one"
+              onClick={() => setAction("choose")}
+            >
+              Cancel
+            </button>
           </>
         );
       }
@@ -144,9 +159,11 @@ const GameAction = () => {
         return (
           <>
             {/* go to next room */}
-            <button onClick={() => setLoading()}>Proceed to Next Room</button>
+            <button className="btn btn-sm-proceed" onClick={() => setLoading()}>
+              Proceed to Next Room
+            </button>
             {/* {go to the end game screen} */}
-            <button>Leave Dungeon</button>
+            <button className="btn btn-sm-leave">Leave Dungeon</button>
           </>
         );
       }
@@ -162,7 +179,10 @@ const GameAction = () => {
             return (
               <>
                 <h4>You Stand In Front of an Mysterious Door</h4>
-                <button onClick={() => openDoor(data.enemies)}>
+                <button
+                  className="btn btn-sm-open"
+                  onClick={() => openDoor(data.enemies)}
+                >
                   Open The Door
                 </button>
               </>
