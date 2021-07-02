@@ -18,6 +18,7 @@ const typeDefs = gql`
     attack: Int
     cost: Int
     speed: Int
+    image: String
   }
 
   type Enemy {

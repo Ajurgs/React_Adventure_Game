@@ -5,7 +5,8 @@
     "class": "Farmer",
     "attack": 1,
     "cost": 0,
-    "speed": 1
+    "speed": 1,
+    "image": "/assets/farmer.png"
   },
   {
     "name": "Lauren",
@@ -13,7 +14,8 @@
     "class": "Bounty Hunter",
     "attack": 10,
     "cost": 20,
-    "speed": 10
+    "speed": 10,
+    "image": "/assets/bountyHunter.png"
   },
   {
     "name": "Jared",
@@ -21,7 +23,8 @@
     "class": "Healer",
     "attack": 5,
     "cost": 25,
-    "speed": 3
+    "speed": 3,
+    "image": "/assets/mage.png"
   },
   {
     "name": "Alex",
@@ -29,7 +32,8 @@
     "class": "Engineer",
     "attack": 10,
     "cost": 15,
-    "speed": 4
+    "speed": 4,
+    "image": "/assets/engineer.png"
   },
   {
     "name": "Lisa",
@@ -37,95 +41,125 @@
     "class": "Queen",
     "attack": 5,
     "cost": 35,
-    "speed": 7
+    "speed": 7,
+    "image": "/assets/queen.png"
   },
-  
-  { "name" :"Chip",
-    "health" : 15 ,
-    "class" : "Ghost Buster",
-    "attack" : 10,
-    "cost" : 10,
-    "speed" : 5
-},
-{ "name" :"Josh",
-  "health" : 10,
-  "class" : "Grammer Master",
-  "attack": 10,
-  "cost" : 5,
-  "speed" :3
-},
-{
-  "name" :"Lacey",
-  "health" : 10,
-  "class" : "Butt Kicker",
-  "attack": 15,
-  "cost" : 5,
-  "speed" :4
-},
-{
-  "name" :"Aaron",
-  "health" : 15,
-  "class" : "Rock God",
-  "attack": 10,
-  "cost" : 10,
-  "speed" :4
-},
-{"name" :"Altan",
-  "health" : 20,
-  "class" : "Warrior",
-  "attack": 20,
-  "cost" : 10,
-  "speed" :5
-},
-{
-  "name" :"Zeke",
-  "health" : 15,
-  "class" : "Vampire",
-  "attack": 20,
-  "cost" : 10,
-  "speed" :6
 
-},
-{"name" :"Tarik",
-  "health" : 20,
-  "class" : "COVID Slayer",
-  "attack": 20,
-  "cost" : 15,
-  "speed" :7
-},
-{"name" :"Nando",
-  "health" : 10,
-  "class" : "Priest",
-  "attack": 15,
-  "cost" : 5,
-  "speed" :4
-},
-{"name" :"Peter",
-  "health" : 15,
-  "class" : "Killer Robot",
-  "attack": 20,
-  "cost" : 50,
-  "speed" : 10
-},
-{"name" :"Jon",
-  "health" : 25,
-  "class" : "Strong Man",
-  "attack": 20,
-  "cost" : 50,
-  "speed" : 12
-},
-{"name" :"Sam B",
-  "health" : 20,
-  "class" : "Ninja",
-  "attack": 15,
-  "cost" : 15,
-  "speed" : 8
-},
-{"name" :"Nick",
-  "health" : 25,
-  "class" : "Ranger",
-  "attack": 20,
-  "cost" : 75,
-  "speed" :10
-}
+  {
+    "name": "Chip",
+    "health": 15,
+    "class": "Ghost Buster",
+    "attack": 10,
+    "cost": 10,
+    "speed": 5,
+    "image": "/assets/zombie.png"
+  },
+  {
+    "name": "Josh",
+    "health": 10,
+    "class": "Grammer Master",
+    "attack": 10,
+    "cost": 5,
+    "speed": 3,
+    "image": "/assets/grammarMaster.png"
+  },
+  {
+    "name": "Lacey",
+    "health": 30,
+    "class": "Butt Kicker",
+    "attack": 15,
+    "cost": 5,
+    "speed": 4,
+    "image": "/assets/buttKicker.png"
+  },
+  {
+    "name": "Aaron",
+    "health": 15,
+    "class": "Rock God",
+    "attack": 10,
+    "cost": 10,
+    "speed": 4,
+    "image": "/assets/rockGod.png"
+  },
+  {
+    "name": "Altan",
+    "health": 20,
+    "class": "Warrior",
+    "attack": 20,
+    "cost": 10,
+    "speed": 5,
+    "image": "/assets/warrior.png"
+  },
+  {
+    "name": "Zeke",
+    "health": 15,
+    "class": "Vampire",
+    "attack": 20,
+    "cost": 10,
+    "speed": 6,
+    "image": "/assets/vampire.png"
+  },
+  {
+    "name": "Tarik",
+    "health": 5,
+    "class": "COVID Slayer",
+    "attack": 20,
+    "cost": 15,
+    "speed": 7,
+    "image": "/assets/covidSlayer.png"
+  },
+  {
+    "name": "Nando",
+    "health": 15,
+    "class": "Priest",
+    "attack": 15,
+    "cost": 5,
+    "speed": 4,
+    "image": "/assets/priest.png"
+  },
+  {
+    "name": "Peter",
+    "health": 15,
+    "class": "Killer Robot",
+    "attack": 20,
+    "cost": 50,
+    "speed": 10,
+    "image": "/assets/killerRobot.png"
+  },
+  {
+    "name": "Jon",
+    "health": 25,
+    "class": "Strong Man",
+    "attack": 20,
+    "cost": 50,
+    "speed": 12,
+    "image": "/assets/strongMan.png"
+  },
+  {
+    "name": "Sam B",
+    "health": 20,
+    "class": "Ninja",
+    "attack": 15,
+    "cost": 15,
+    "speed": 8,
+    "image": "/assets/ninja.png"
+  },
+  {
+    "name": "Nick",
+    "health": 25,
+    "class": "Ranger",
+    "attack": 20,
+    "cost": 75,
+    "speed": 10,
+    "image": "/assets/ranger.png"
+  },
+  {
+    "name": "Ben",
+    "health": 25,
+    "class": "King",
+    "attack": 10,
+    "cost": 80,
+    "speed": 10,
+    "image": "/assets/king.png"
+  }
 ]
