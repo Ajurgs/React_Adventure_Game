@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
@@ -26,7 +26,7 @@ const Character = () => {
   const [state, dispatch] = useGameContext();
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
-
+  const [localState, setLocalState] = useState({currentCoins: 0});
   useEffect(() => {
     dispatch({ type: RESET_GAME });
   }, []);
@@ -75,7 +75,7 @@ const Character = () => {
   }
 
   const { coins, characters, _id } = profile.me;
-
+  
   return (
     <div>
       {location.pathname !== "/me" && (
@@ -139,14 +139,11 @@ const Character = () => {
                 <div className="card-body">
                   <button
                     className="btn btn-sm-buy"
-                    onClick={
-                      () => buyCharacter(hero._id, hero.cost)
-                    }
+                    onClick={() => buyCharacter(hero._id, hero.cost)}
                   >
                     Buy
                   </button>
                 </div>
-
               </div>
             ))}
           </div>
