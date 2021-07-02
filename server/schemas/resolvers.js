@@ -81,10 +81,10 @@ const resolvers = {
       // throw new AuthenticationError("You need to be logged in!");
     },
 
-    updateCoinBalance: async (parent, { profileId, updatedCoins }) => {
+    updateCoinBalance: async (parent, { profileId, coins }) => {
       return Profile.findByIdAndUpdate(
         profileId,
-        { coins: updatedCoins },
+        { coins: coins },
         { new: true }
       );
     },
