@@ -1,8 +1,8 @@
-import React,{useEffect}from "react";
+import React, { useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
-import { useGameContext } from '../utils/GlobalState';
+import { useGameContext } from "../utils/GlobalState";
 import { RESET_GAME } from "../utils/actions";
 import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
 import { useQuery } from "@apollo/client";
@@ -23,14 +23,14 @@ const Style = {
 const Character = () => {
   const location = useLocation();
   const history = useHistory();
-  const [state,dispatch] = useGameContext();
+  const [state, dispatch] = useGameContext();
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
 
-  useEffect(()=>{
-    dispatch({type:RESET_GAME})
-  },[])
-  
+  useEffect(() => {
+    dispatch({ type: RESET_GAME });
+  }, []);
+
   const [addCharacterToProfile, { error, data }] = useMutation(
     ADD_CHARACTER_TO_PROFILE
   );
@@ -90,36 +90,52 @@ const Character = () => {
         <h4>Successfully fight your way through the dungeon to earn more!</h4>
       </div>
       <h3>Character Shop</h3>
-      <main className="flex-row justify-start">
-        <div className="col-12 col-md-10 mb-5">
-          {character.characters.map((hero, index) => (
-            <div key={index} className="card mb-3">
-              <div className="card-header">
-                <img
-                  src={process.env.PUBLIC_URL + hero.image}
-                  alt={hero.image}
-                  style={Style.characterIcon}
-                />
+      {/* <main className="flex-row justify-start">
+         <div className="col-12 col-md-10 mb-5">
+        <div className="container pd-5">
+          <div className="row">
+            <div className="col"></div>
+            <div className="col"></div>
+            <div className="col"></div>
+            <div className="col"></div> */}
 
-                <h4>Name:{hero.name}</h4>
-                <h4>Health: {hero.health}</h4>
-                <h4>Class: {hero.class}</h4>
-                <h4>Attack: {hero.attack}</h4>
-                <h4>Cost: {hero.cost}</h4>
+      <main class="row">
+        <div className="col-10 d-flex justify-content-center vh-100">
+          <div className="row mx-4 d-flex align-items-center">
+            {/* <div className="col-4"> */}
+
+            {character.characters.map((hero, index) => (
+              <div key={index} className="card mb-3">
+                <div className="card-header">
+                  <img
+                    src={process.env.PUBLIC_URL + hero.image}
+                    alt={hero.image}
+                    style={Style.characterIcon}
+                  />
+
+                  <h4>Name:{hero.name}</h4>
+                  <h4>Health: {hero.health}</h4>
+                  <h4>Class: {hero.class}</h4>
+                  <h4>Attack: {hero.attack}</h4>
+                  <h4>Cost: {hero.cost}</h4>
+                </div>
+                <div className="card-body">
+                  <button
+                    className="btn btn-sm-buy"
+                    onClick={
+                      (() => addCharacter(hero._id),
+                      () => updateCoins(hero.cost))
+                    }
+                  >
+                    Buy
+                  </button>
+                </div>
               </div>
-              <div className="card-body">
-                <button
-                  className="btn btn-sm-buy"
-                  onClick={
-                    (() => addCharacter(hero._id), () => updateCoins(hero.cost))
-                  }
-                >
-                  Buy
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        {/* </div> */}
+        {/* </div> */}
       </main>
     </div>
   );
