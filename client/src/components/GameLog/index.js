@@ -17,10 +17,6 @@ const GameLog = ()=>{
         logRef.current.value += `${state.lastMessage} \n`;
         logRef.current.scrollTop = logRef.current.scrollHeight;
     },[state.lastMessage])
-    // function test(){
-    //     console.log(logRef)
-    //     console.log(logRef.current.value)
-    // }
     return (
         <>
         <div>
