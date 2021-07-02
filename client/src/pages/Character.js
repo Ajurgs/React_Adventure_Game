@@ -41,6 +41,14 @@ const Character = () => {
   }, [coinData]);
   
 
+  const [updateCoinBalance, { coinError, coinData }] =
+    useMutation(UPDATE_COIN_BALANCE);
+
+  if (loading || loadingMe) {
+    return <div>Loading...</div>;
+  }
+
+  const { coins, characters, _id } = profile.me;
   const addCharacter = async (characterId) => {
     try {
       const { data } = await addCharacterToProfile({
@@ -55,12 +63,12 @@ const Character = () => {
  
 
   const updateCoins = async (cost) => {
-    console.log("updating coin balance");
     try {
+      console.log(coins - cost);
       const { data } = await updateCoinBalance({
         variables: {
           profileId: _id,
-          updatedCoins: coins - cost,
+          coins: coins - cost,
         },
       });
       console.log(data);
@@ -93,7 +101,7 @@ const Character = () => {
             <h4>Your Hero Roster:</h4>
             <ul>
               {characters.map((hero, index) => (
-                <li>
+                <li key={index}>
                   {hero.name} the {hero.class}
                 </li>
               ))}

@@ -6,6 +6,7 @@ const Style={
 
   gameroom:  {minHeight:"400px"},
   characterIcon :{height:"25%"},
+  enemyIcon :{height:"25%"},
 }
 
 const GameRoom = () =>{
@@ -65,6 +66,7 @@ const GameRoom = () =>{
                     {enemies.map((enemy,index)=>(
                         <div key={index}className="card">
                             <div className="card-header">
+                            <img src = {process.env.PUBLIC_URL + enemy.image} alt = "enemy image" style ={Style.enemyIcon}/>
                                 <h5>
                                     {enemy.name}
                                 </h5>
