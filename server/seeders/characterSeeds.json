@@ -55,9 +55,9 @@
     "image": "/assets/zombie.png"
   },
   {
-    "name": "Josh",
+    "name": "Josh Grammar",
     "health": 10,
-    "class": "Grammer Master",
+    "class": "Grammar Master",
     "attack": 10,
     "cost": 5,
     "speed": 3,
@@ -158,16 +158,16 @@
     "health": 25,
     "class": "King",
     "attack": 10,
-    "cost": 80,
+    "cost": 890,
     "speed": 10,
     "image": "/assets/king.png"
   },
   {
-    "name": "Josh1",
+    "name": "Josh Boss",
     "health": 25,
     "class": "Ultimate Josh",
-    "attack": 10,
-    "cost": 80,
+    "attack": 900,
+    "cost": 800,
     "speed": 10,
     "image": "/assets/ultimateJosh.png"
   },
@@ -185,7 +185,7 @@
     "health": 25,
     "class": "Berserker",
     "attack": 10,
-    "cost": 80,
+    "cost": 500,
     "speed": 10,
     "image": "/assets/berserker.png"
   },
