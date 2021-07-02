@@ -11,6 +11,8 @@ export const SET_HEROES = "SET_HEROES";
 export const SET_ENEMIES = "SET_ENEMIES";
 export const SET_TURN_ORDER= "SET_TURN_ORDER";
 
+export const SET_LAST_MESSAGE = "SET_LAST_MESSAGE";
+
 export const TAKE_TURN = "TAKE_TURN";
 // coin actions
 export const SET_COIN = "SET_COIN";

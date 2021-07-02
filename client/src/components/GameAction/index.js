@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  TAKE_TURN,
-  NEXT_ROOM,
-  SET_ENEMIES,
-  ADD_COIN,
-  TOGGLE_LOSE,
-  RESET_GAME,
-} from "../../utils/actions";
+
+import React,{useState,useEffect} from "react";
+import { TAKE_TURN,NEXT_ROOM,SET_ENEMIES, ADD_COIN,TOGGLE_LOSE,RESET_GAME,SET_LAST_MESSAGE } from "../../utils/actions";
 
 import { useGameContext } from "../../utils/GlobalState";
 import { QUERY_ENEMIES } from "../../utils/queries";
@@ -27,6 +21,7 @@ const GameAction = () => {
     if (turnOrder[whoseTurn].ai) {
       const timer = setTimeout(() => {
         console.log(`${turnOrder[whoseTurn].name} has taken their turn`);
+        dispatch({type:SET_LAST_MESSAGE,payload:`${turnOrder[whoseTurn].name} has taken their turn`})
         let target = Math.floor(Math.random() * state.currentCharacters.length);
         console.log(target);
         makeAttack(
