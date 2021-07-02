@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { TAKE_TURN, NEXT_ROOM, SET_ENEMIES } from "../../utils/actions";
+
+import React,{useState,useEffect} from "react";
+import { TAKE_TURN,NEXT_ROOM,SET_ENEMIES, ADD_COIN,TOGGLE_GAME } from "../../utils/actions";
+
 
 import { useGameContext } from "../../utils/GlobalState";
 import { QUERY_ENEMIES } from "../../utils/queries";
@@ -30,12 +32,35 @@ const GameAction = () => {
       }, 1000);
       return () => clearTimeout(timer);
     }
+
   }, [state.whoseTurn]);
 
   useEffect(() => {
     if (currentCharacters.length === 0) {
       // you lose
       console.log("YOU LOSE!!!!");
+
+    function exitDungeon() {
+        dispatch({type:ADD_COIN,payload:state.totalRooms})
+        dispatch({type:TOGGLE_GAME});
+    }
+    if(state.rewardRoom){
+        return(
+            <>
+            <button onClick={()=>exitDungeon()}>Exit Dungeon</button>
+            </>
+        )
+    }
+
+    if(turnOrder[whoseTurn].ai){
+        // take the ai's turn
+        console.log("ai turn");
+        
+        return(
+            <div>
+                <h4>Please Wait while AI Makes its move</h4>
+            </div>
+        )
     }
     if (enemies.length === 0) {
       // clear the room

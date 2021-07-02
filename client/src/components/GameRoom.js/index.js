@@ -18,7 +18,15 @@ const GameRoom = () =>{
             </div>
         )
     }
-
+    if(state.rewardRoom){
+        return(
+            <div className="card m-3" style={Style}>
+                <h1>You Have Entered The Treasure Room</h1>
+                <h2>Claim Your Reward</h2>
+                <h3>Your Exploration Has Uncovered {state.totalRooms} Coins </h3>
+            </div>
+        )
+    }
     return(
         <div className="card m-3" style={Style}>
             <div className="container">
