@@ -81,6 +81,7 @@ export const QUERY_ENEMIES = gql`
       health
       attack
       speed
+      image
     }
   }
 `;
@@ -93,6 +94,7 @@ export const QUERY_SINGLE_ENEMY = gql`
       health
       attack
       speed
+      image
     }
   }
 `;
