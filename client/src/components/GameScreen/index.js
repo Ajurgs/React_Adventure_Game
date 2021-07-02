@@ -26,9 +26,9 @@ const styles = {
 
 const GameScreen = () => {
   const [formState, setFormState] = useState({
-    firstHero: "",
-    secondHero: "",
-    thirdHero: "",
+    firstHero: {},
+    secondHero: {},
+    thirdHero: {},
     dungeonSize: 0,
   });
 
@@ -79,13 +79,16 @@ const GameScreen = () => {
   const handelFormSubmit = async (event) => {
     event.preventDefault();
     try {
+        console.log(formState.firstHero);
       // Set the global state to the current instance of the game
-      //dispatch({type:SET_HEROES, payload:[formState.firstHero,formState.secondHero,formState.thirdHero]});
-      dispatch({ type: SET_TOTAL_ROOMS, payload: formState.dungeonSize });
-      const newEnemies = chooseThreeEnemies(enemyData.enemies);
-      dispatch({ type: SET_ENEMIES, payload: newEnemies });
-      dispatch({ type: SET_TURN_ORDER });
-      toggleDungeon();
+      const test = [formState.firstHero,formState.secondHero,formState.thirdHero];
+      console.log(test);
+    //   dispatch({type:SET_HEROES, payload:[{...formState.firstHero},{...formState.secondHero},{...formState.thirdHero}]});
+    //   dispatch({ type: SET_TOTAL_ROOMS, payload: formState.dungeonSize });
+    //   const newEnemies = chooseThreeEnemies(enemyData.enemies);
+    //   dispatch({ type: SET_ENEMIES, payload: newEnemies });
+    //   dispatch({ type: SET_TURN_ORDER });
+    //   toggleDungeon();
     } catch (error) {
       console.error(error);
     }
@@ -139,21 +142,22 @@ const GameScreen = () => {
                     onChange={handelChange}
                   >
                     <option value=""> Chose a Hero</option>
-                    {characters.map((c, index) => {
+                    {characters.map((c, index) => 
                       <option
                         key={index}
-                        value={{
+                        value={JSON.stringify({
                           _id: c._id,
                           name: c.name,
                           health: c.health,
                           attack: c.attack,
                           speed: c.speed,
+                          image: c.image,
                           ai: false,
-                        }}
+                        })}
                       >
                         {c.name}
-                      </option>;
-                    })}
+                      </option>
+                    )}
                   </select>
                 </div>
                 <div className="col-4">
@@ -164,7 +168,7 @@ const GameScreen = () => {
                     onChange={handelChange}
                   >
                     <option value=""> Chose a Hero</option>
-                    {characters.map((c, index) => {
+                    {characters.map((c, index) => 
                       <option
                         key={index}
                         value={{
@@ -173,12 +177,13 @@ const GameScreen = () => {
                           health: c.health,
                           attack: c.attack,
                           speed: c.speed,
+                          image: c.image,
                           ai: false,
                         }}
                       >
                         {c.name}
-                      </option>;
-                    })}
+                      </option>
+                    )}
                   </select>
                 </div>
                 <div className="col-4">
@@ -189,7 +194,7 @@ const GameScreen = () => {
                     onChange={handelChange}
                   >
                     <option value=""> Chose a Hero</option>
-                    {characters.map((c, index) => {
+                    {characters.map((c, index) => 
                       <option
                         key={index}
                         value={{
@@ -198,12 +203,13 @@ const GameScreen = () => {
                           health: c.health,
                           attack: c.attack,
                           speed: c.speed,
+                          image: c.image,
                           ai: false,
                         }}
                       >
                         {c.name}
-                      </option>;
-                    })}
+                      </option>
+                    )}
                   </select>
                 </div>
               </div>
