@@ -3,7 +3,7 @@ import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
 import { useGameContext } from '../utils/GlobalState';
-import { TOGGLE_GAME } from "../utils/actions";
+import { RESET_GAME } from "../utils/actions";
 import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
@@ -28,8 +28,9 @@ const Character = () => {
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
 
   useEffect(()=>{
-    dispatch({type:TOGGLE_GAME})
+    dispatch({type:RESET_GAME})
   },[])
+  
   const [addCharacterToProfile, { error, data }] = useMutation(
     ADD_CHARACTER_TO_PROFILE
   );
