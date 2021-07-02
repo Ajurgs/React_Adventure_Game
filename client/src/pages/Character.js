@@ -85,16 +85,27 @@ const Character = () => {
       )}
       <div className="bg-light p-5">
         {characters.length ? (
-          <h4>Your Current Party: {characters}</h4>
+          <>
+            <h4>Your Hero Roster:</h4>
+            <ul>
+              {characters.map((hero, index) => (
+                <li>
+                  {hero.name} the {hero.class}
+                </li>
+              ))}
+            </ul>
+          </>
         ) : (
-          <h4 className="recruit">Recruit some heroes to add to your party!</h4>
+          <h4 className="recruit">
+            Recruit some heroes to add to your roster!
+          </h4>
         )}
       </div>
       <div className="bg-danger p-5">
         <h1>Your remaining coins: {coins} </h1>
         <h4>Successfully fight your way through the dungeon to earn more!</h4>
       </div>
-      <h3>Character Shop</h3>
+      <h3>Hero Shop</h3>
       <main className="flex-row justify-start">
         <div className="col-12 col-md-10 mb-5">
           {character.characters.map((hero, index) => (
