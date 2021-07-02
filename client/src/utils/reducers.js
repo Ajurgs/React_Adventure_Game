@@ -19,7 +19,8 @@ import {
     TOGGLE_REWARD,
     RESET_GAME,
     TOGGLE_LOSE,
-    TOGGLE_RETREAT
+    TOGGLE_RETREAT,
+    SET_LAST_MESSAGE,
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -98,6 +99,12 @@ export default function reducer(state,action){
             return{
                 ...state,
                 turnOrder: getTurnOrder(state.currentCharacters,state.enemies),
+            }
+        }
+        case SET_LAST_MESSAGE:{
+            return{
+                ...state,
+                lastMessage: action.payload,
             }
         }
         case TAKE_TURN:{

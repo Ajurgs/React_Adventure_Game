@@ -16,8 +16,9 @@ const GameProvider = ({value = [], ...props})=>{
             {_id:"003",name:"Paul",health:1,attack:1,speed:8,ai:true},
         ],
         currentCharacters:[
-            {_id:"004",name:"Dave", health:20,attack:2,speed:1,ai:false},
+            {_id:"004",name:"Dave", health:20,attack:2,speed:10,ai:false},
         ],
+        lastMessage:"",
         turnOrder:[],
         currentRoom :1,
         totalRooms: 1,

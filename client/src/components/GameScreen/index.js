@@ -3,6 +3,7 @@ import React,{useEffect,useState} from 'react';
 import { useGameContext } from '../../utils/GlobalState';
 import GameAction from '../GameAction';
 import GameRoom from '../GameRoom.js';
+import GameLog from '../GameLog';
 import { useLazyQuery } from "@apollo/client";
 import {QUERY_ME,QUERY_ENEMIES} from '../../utils/queries';
 import {  chooseThreeEnemies } from "../../utils/helper";
@@ -95,6 +96,7 @@ if (state.gameRunning) {
         <div className="card">
           <GameRoom />
           <GameAction />
+          <GameLog/>
           <button className="btn btn-sm-end" onClick={quitGame}>
             Quit Game
           </button>
