@@ -2,7 +2,7 @@
 export const TOGGLE_GAME = "TOGGLE_GAME";
 export const TOGGLE_DUNGEON = "TOGGLE_DUNGEON";
 export const TOGGLE_BETWEEN_ROOM = "TOGGLE_BETWEEN_ROOM";
-
+export const TOGGLE_REWARD = "TOGGLE_REWARD";
 export const SET_TOTAL_ROOMS = "SET_TOTAL_ROOMS";
 export const SET_HEROES = "SET_HEROES";
 export const SET_ENEMIES = "SET_ENEMIES";

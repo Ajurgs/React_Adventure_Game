@@ -17,6 +17,7 @@ import {
     NEXT_ROOM,
     TOGGLE_BETWEEN_ROOM,
     SET_ENEMIES,
+    TOGGLE_REWARD,
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -55,6 +56,12 @@ export default function reducer(state,action){
             return{
                 ...state,
                 betweenRooms: !state.betweenRooms
+            }
+        }
+        case TOGGLE_REWARD:{
+            return{
+                ...state,
+                rewardRoom : !state.rewardRoom,
             }
         }
         case SET_TOTAL_ROOMS:

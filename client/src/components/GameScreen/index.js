@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react';
 import { useGameContext } from '../../utils/GlobalState';
 import GameAction from '../GameAction';
 import GameRoom from '../GameRoom.js';
-import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,MAKE_ROOM } from '../../utils/actions';
+import { TOGGLE_GAME,TOGGLE_DUNGEON,SET_HEROES,SET_TOTAL_ROOMS,SET_TURN_ORDER,MAKE_ROOM,TOGGLE_REWARD } from '../../utils/actions';
 
 const styles = {
     heroSelect:{
@@ -21,6 +21,10 @@ const GameScreen = () =>{
     
     useEffect(()=>{
         console.log("room")
+        if(state.currentRoom > state.totalRooms){
+            console.log("end Game");
+            dispatch({type:TOGGLE_REWARD});
+        }
     },[state.currentRoom])
     function toggleGame(){
         dispatch({type:TOGGLE_GAME});
@@ -102,7 +106,7 @@ const GameScreen = () =>{
                             <label className="form-check-label" htmlFor="inlineRadio3">20 Room </label>
                             </div>
                         </div>
-<div className ="flex-row justify-center">
+                    <div className ="flex-row justify-center">
                         <button className ="btn btn-lg-dungeon" type="submit">Enter Dungeon</button>
                     </div>
                     </form>
