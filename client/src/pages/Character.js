@@ -14,7 +14,12 @@ import {
 //import quries and mutations?
 
 // import Auth from '../../utils/auth';
-
+const Style = {
+  characterIcon: {
+    width: "50px",
+    height: "50px",
+  },
+};
 const Character = () => {
   const location = useLocation();
   const history = useHistory();
@@ -89,6 +94,12 @@ const Character = () => {
           {character.characters.map((hero, index) => (
             <div key={index} className="card mb-3">
               <div className="card-header">
+                <img
+                  src={process.env.PUBLIC_URL + hero.image}
+                  alt={hero.image}
+                  style={Style.characterIcon}
+                />
+
                 <h4>Name:{hero.name}</h4>
                 <h4>Health: {hero.health}</h4>
                 <h4>Class: {hero.class}</h4>

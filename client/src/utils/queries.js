@@ -14,6 +14,7 @@ export const QUERY_PROFILES = gql`
         attack
         cost
         speed
+        image
       }
       coins
     }
@@ -33,6 +34,7 @@ export const QUERY_SINGLE_PROFILE = gql`
         attack
         cost
         speed
+        image
       }
       coins
     }
@@ -50,6 +52,7 @@ export const QUERY_CHARACTERS = gql`
       attack
       cost
       speed
+      image
     }
   }
 `;
@@ -64,6 +67,7 @@ export const QUERY_SINGLE_CHARACTER = gql`
       attack
       cost
       speed
+      image
     }
   }
 `;
@@ -107,6 +111,7 @@ export const QUERY_ME = gql`
         attack
         cost
         speed
+        image
       }
     }
   }
