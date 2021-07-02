@@ -1152,12 +1152,18 @@ a:hover {
 .btn.btn-sm-cancel-one {
   background-color: #bb7e5d;
 }
+.character-card-header {
+  height: 300px;
+}
 
 .card {
-  width: 22%;
-  margin: 0 5px 0 5px;
   border: #1a1a1a;
   margin-bottom: 1rem;
+}
+.character-card {
+  /* height: 500px; */
+  width: 22%;
+  margin: 0 5px 0 5px;
 }
 
 .card .card-header {

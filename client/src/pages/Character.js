@@ -16,8 +16,8 @@ import {
 // import Auth from '../../utils/auth';
 const Style = {
   characterIcon: {
-    width: "128px",
-    height: "128px",
+    // width: "15%",
+    height: "15%",
   },
 };
 const Character = () => {
@@ -99,14 +99,14 @@ const Character = () => {
             <div className="col"></div>
             <div className="col"></div> */}
 
-      <main class="row">
-        <div className="col-10 d-flex justify-content-center vh-100">
+      <main className="row">
+        <div className="col-12 d-flex justify-content-center vh-100">
           <div className="row mx-4 d-flex align-items-center">
             {/* <div className="col-4"> */}
 
             {character.characters.map((hero, index) => (
-              <div key={index} className="card mb-3">
-                <div className="card-header">
+              <div key={index} className="card mb-3 character-card">
+                <div className="card-header character-card-header">
                   <img
                     src={process.env.PUBLIC_URL + hero.image}
                     alt={hero.image}
