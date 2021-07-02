@@ -16,8 +16,8 @@ import {
 // import Auth from '../../utils/auth';
 const Style = {
   characterIcon: {
-    width: "50px",
-    height: "50px",
+    width: "128px",
+    height: "128px",
   },
 };
 const Character = () => {

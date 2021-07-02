@@ -50,7 +50,7 @@
     "health": 15,
     "class": "Ghost Buster",
     "attack": 10,
-    "cost": 10,
+    "cost": 0,
     "speed": 5,
     "image": "/assets/zombie.png"
   },
@@ -161,5 +161,41 @@
     "cost": 80,
     "speed": 10,
     "image": "/assets/king.png"
+  },
+  {
+    "name": "Josh",
+    "health": 25,
+    "class": "Ultimate Josh",
+    "attack": 10,
+    "cost": 80,
+    "speed": 10,
+    "image": "/assets/ultimateJosh.png"
+  },
+  {
+    "name": "Jack",
+    "health": 25,
+    "class": "Centaur",
+    "attack": 10,
+    "cost": 80,
+    "speed": 10,
+    "image": "/assets/centaur.png"
+  },
+  {
+    "name": "TJ ",
+    "health": 25,
+    "class": "Berserker",
+    "attack": 10,
+    "cost": 80,
+    "speed": 10,
+    "image": "/assets/berserker.png"
+  },
+  {
+    "name": "Mason",
+    "health": 25,
+    "class": "Bard",
+    "attack": 10,
+    "cost": 0,
+    "speed": 10,
+    "image": "/assets/bard.png"
   }
 ]
