@@ -5,7 +5,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useGameContext } from "../utils/GlobalState";
 import { RESET_GAME } from "../utils/actions";
 import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import {
   ADD_CHARACTER_TO_PROFILE,
@@ -27,22 +27,22 @@ const Character = () => {
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
 
-  useEffect(() => {
-    dispatch({ type: RESET_GAME });
-  }, []);
-
+  //TODO update profile coin balance when hero is purchased
+  const [updateCoinBalance, { coinError, coinData }] =
+    useMutation(UPDATE_COIN_BALANCE);
   const [addCharacterToProfile, { error, data }] = useMutation(
     ADD_CHARACTER_TO_PROFILE
   );
 
-  const [updateCoinBalance, { coinError, coinData }] =
-    useMutation(UPDATE_COIN_BALANCE);
+  useEffect(() => {
+    dispatch({ type: RESET_GAME });
+  }, []);
 
   if (loading || loadingMe) {
     return <div>Loading...</div>;
   }
 
-  const { coins, characters, _id } = profile.me;
+  // const { coins, characters, _id } = profile.me;
   const addCharacter = async (characterId) => {
     try {
       const { data } = await addCharacterToProfile({
@@ -54,8 +54,6 @@ const Character = () => {
     }
   };
 
-  //TODO update profile coin balance when hero is purchased
-
   const updateCoins = async (cost) => {
     try {
       console.log(coins - cost);
@@ -65,6 +63,7 @@ const Character = () => {
           coins: coins - cost,
         },
       });
+
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -75,6 +74,7 @@ const Character = () => {
     addCharacter(id);
     updateCoins(cost);
   };
+  const { coins, characters, _id } = profile.me;
 
   return (
     <div>
