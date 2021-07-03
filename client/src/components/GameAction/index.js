@@ -7,6 +7,8 @@ import {
   TOGGLE_LOSE,
   RESET_GAME,
   SET_LAST_MESSAGE,
+  SET_TURN_ORDER,
+  SET_TURN,
 } from "../../utils/actions";
 
 import { useGameContext } from "../../utils/GlobalState";
@@ -21,11 +23,10 @@ const GameAction = () => {
 
   const [getEnemies, { loading, data }] = useLazyQuery(QUERY_ENEMIES);
 
-  const { enemies, turnOrder, whoseTurn, currentCharacters } = state;
-
+  const { enemies, turnOrder, whoseTurn, currentCharacters,looseScreen } = state;
   useEffect(() => {
     console.log("in Use Effect");
-    if (turnOrder[whoseTurn].ai) {
+    if (turnOrder[whoseTurn].ai && !looseScreen) {
       const timer = setTimeout(() => {
         console.log(`${turnOrder[whoseTurn].name} has taken their turn`);
         dispatch({
@@ -44,7 +45,10 @@ const GameAction = () => {
       return () => clearTimeout(timer);
     }
   }, [state.whoseTurn]);
-
+  useEffect(()=>{
+    console.log("room change");
+    dispatch({type:TAKE_TURN});
+  },[state.currentRoom])
   useEffect(() => {
     if (currentCharacters.length === 0) {
       // you lose
@@ -83,16 +87,13 @@ const GameAction = () => {
       </>
     );
   }
-
-  if (turnOrder[whoseTurn].ai) {
-    // take the ai's turn
-    console.log("ai turn");
-
-    return (
+  if(turnOrder<0){
+    dispatch({type:TAKE_TURN});
+    return(
       <div>
-        <h4>Please Wait while AI Makes its move</h4>
+        <h4>Go To next turn</h4>
       </div>
-    );
+    )
   }
 
   if (turnOrder[whoseTurn].ai) {
@@ -114,13 +115,15 @@ const GameAction = () => {
   function handelAttack(index) {
     console.log(`attacking ${state.enemies[index].name} at index ${index} `);
     makeAttack(turnOrder[whoseTurn].attack, enemies[index], dispatch);
+    setAction("choose");
     dispatch({ type: TAKE_TURN });
   }
   function openDoor(enemies) {
     const newEnemies = chooseThreeEnemies(enemies);
     dispatch({ type: SET_ENEMIES, payload: newEnemies });
-    setAction("choose");
+    dispatch({type:SET_TURN_ORDER});
     dispatch({ type: NEXT_ROOM });
+    setAction("choose");
   }
   if (turnOrder[whoseTurn].ai) {
     // take the ai's turn
