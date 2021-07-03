@@ -137,7 +137,7 @@ const GameScreen = () => {
                     name="firstHero"
                     onChange={handelChange}
                   >
-                    <option value=""> Chose a Hero</option>
+                    <option value=""> Choose a Hero</option>
                     {characters.map((c, index) => {
                       <option
                         key={index}
@@ -162,7 +162,7 @@ const GameScreen = () => {
                     name="secondHero"
                     onChange={handelChange}
                   >
-                    <option value=""> Chose a Hero</option>
+                    <option value=""> Choose a Hero</option>
                     {characters.map((c, index) => {
                       <option
                         key={index}
@@ -187,7 +187,7 @@ const GameScreen = () => {
                     name="thirdHero"
                     onChange={handelChange}
                   >
-                    <option value=""> Chose a Hero</option>
+                    <option value=""> Choose a Hero</option>
                     {characters.map((c, index) => {
                       <option
                         key={index}
