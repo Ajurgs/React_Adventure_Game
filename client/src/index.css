@@ -960,6 +960,10 @@ a:hover {
 
 .bg-light {
   background-color: #660a00 !important;
+  background-image: url("./assets/images/bloodhand.png"); 
+  background-repeat: no-repeat;
+  background-position: right top;
+
 }
 
 .bg-dark {
