@@ -8,7 +8,7 @@
   },
   {
     "name": "Disgruntled Developer",
-    "health": 60,
+    "health": 50,
     "attack": 10,
     "speed": 7,
     "image": "/assets/disgruntledDeveloper.png"
@@ -22,57 +22,57 @@
   },
   {
     "name": "ERROR 404",
-    "health": 5,
+    "health": 8,
     "attack": 1,
     "speed": 2,
     "image": "/assets/E404.png"
   },
   {
     "name": "Boiler Plate",
-    "health": 5,
+    "health": 10,
     "attack": 1,
     "speed": 2,
     "image": "/assets/boilerPlate.png"
   },
   {
     "name": "Bug Fix",
-    "health": 5,
+    "health": 7,
     "attack": 1,
     "speed": 2,
     "image": "/assets/bugFix.png"
   },
   {
     "name": "Copy Pasta",
-    "health": 5,
-    "attack": 1,
+    "health": 8,
+    "attack": 2,
     "speed": 2,
     "image": "/assets/copyPasta.png"
   },
   {
     "name": "Activity Commenting",
     "health": 5,
-    "attack": 1,
+    "attack": 2,
     "speed": 2,
     "image": "/assets/comments.png"
   },
   {
     "name": "CSS",
     "health": 5,
-    "attack": 1,
+    "attack": 2,
     "speed": 2,
     "image": "/assets/css.png"
   },
   {
     "name": "Merge Conflicts",
     "health": 5,
-    "attack": 1,
+    "attack": 3,
     "speed": 2,
     "image": "/assets/mergeConflicts.png"
   },
   {
     "name": "API's",
-    "health": 5,
-    "attack": 1,
+    "health": 9,
+    "attack": 3,
     "speed": 2,
     "image": "/assets/apiDemon.png"
   }
