@@ -38,11 +38,16 @@ export function makeAttack(damage,target,dispatch){
 
 
 export function chooseThreeEnemies(enemies){
-    console.log(enemies)
     const firstEnemy = enemies[Math.floor(Math.random()*enemies.length)];
     const secondEnemy = enemies[Math.floor(Math.random()*enemies.length)];
     const thirdEnemy = enemies[Math.floor(Math.random()*enemies.length)];
     const newEnemies = [{...firstEnemy,_id:firstEnemy._id+"-1",ai:true},{...secondEnemy,_id:secondEnemy._id+"-2",ai:true},{...thirdEnemy,_id:thirdEnemy._id+"-3",ai:true}];
     console.log(newEnemies);
     return(newEnemies);
+}
+
+
+
+export function convertToObjects(characters){
+    return characters.map((character,index)=> JSON.parse(character))
 }
