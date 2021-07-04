@@ -1,6 +1,5 @@
 import { useReducer } from "react";
 import {
-    ADD_CHARACTER,
     TOGGLE_GAME,
     TOGGLE_DUNGEON,
     SET_HEROES,
@@ -21,6 +20,7 @@ import {
     TOGGLE_LOSE,
     TOGGLE_RETREAT,
     SET_LAST_MESSAGE,
+    SET_TURN,
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -48,7 +48,6 @@ export default function reducer(state,action){
                     gameRunning: true,
                 } 
             }
-            break;
         }
         case TOGGLE_DUNGEON:
             return{
@@ -107,6 +106,12 @@ export default function reducer(state,action){
                 lastMessage: action.payload,
             }
         }
+        case SET_TURN:{
+            return{
+                ...state,
+                whoseTurn: action.payload,
+            }
+        }
         case TAKE_TURN:{
             return{
                 ...state,
@@ -149,7 +154,7 @@ export default function reducer(state,action){
         case NEXT_ROOM:{
             return{
                 ...state,
-                currentRoom: state.currentRoom++,
+                currentRoom: state.currentRoom +1,
             }
         }
         case RESET_GAME:{
