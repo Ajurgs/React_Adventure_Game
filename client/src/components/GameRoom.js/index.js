@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React from "react";
 
 import { useGameContext } from "../../utils/GlobalState";
 
@@ -48,7 +48,7 @@ const GameRoom = () =>{
                     {currentCharacters.map((hero,index)=>(
                         <div key={index}className="card">
                             <div className="card-header">
-                                <img src = {process.env.PUBLIC_URL + hero.image} alt = "hero image" style ={Style.characterIcon}/>
+                                <img src = {process.env.PUBLIC_URL + hero.image} alt="hero" style ={Style.characterIcon}/>
                                     
                                 <h5>
                                 
@@ -66,7 +66,7 @@ const GameRoom = () =>{
                     {enemies.map((enemy,index)=>(
                         <div key={index}className="card">
                             <div className="card-header">
-                            <img src = {process.env.PUBLIC_URL + enemy.image} alt = "enemy image" style ={Style.enemyIcon}/>
+                            <img src = {process.env.PUBLIC_URL + enemy.image} alt="enemy" style ={Style.enemyIcon}/>
                                 <h5>
                                     {enemy.name}
                                 </h5>

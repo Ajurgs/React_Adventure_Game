@@ -1,6 +1,5 @@
 import { useReducer } from "react";
 import {
-    ADD_CHARACTER,
     TOGGLE_GAME,
     TOGGLE_DUNGEON,
     SET_HEROES,
@@ -49,7 +48,6 @@ export default function reducer(state,action){
                     gameRunning: true,
                 } 
             }
-            break;
         }
         case TOGGLE_DUNGEON:
             return{

@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-
-import { useGameContext } from "../utils/GlobalState";
-import { SET_COIN } from "../utils/actions";
 
 import GameScreen from "../components/GameScreen";
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";

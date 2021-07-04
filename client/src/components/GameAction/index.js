@@ -24,31 +24,21 @@ const GameAction = () => {
   const [getEnemies, { loading, data }] = useLazyQuery(QUERY_ENEMIES);
 
   const { enemies, turnOrder, whoseTurn, currentCharacters,looseScreen } = state;
+
   useEffect(() => {
     console.log("in Use Effect");
-    if (turnOrder[whoseTurn].ai && !looseScreen) {
-      const timer = setTimeout(() => {
-        console.log(`${turnOrder[whoseTurn].name} has taken their turn`);
-        dispatch({
-          type: SET_LAST_MESSAGE,
-          payload: `${turnOrder[whoseTurn].name} has taken their turn`,
-        });
-        let target = Math.floor(Math.random() * state.currentCharacters.length);
-        console.log(target);
-        makeAttack(
-          turnOrder[whoseTurn].attack,
-          currentCharacters[target],
-          dispatch
-        );
-        dispatch({ type: TAKE_TURN });
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [state.whoseTurn]);
+    aiAction();
+  }, [whoseTurn]);
+
   useEffect(()=>{
     console.log("room change");
-    dispatch({type:TAKE_TURN});
+    //dispatch({type:TAKE_TURN});
+    dispatch({type:SET_TURN,payload:0});
+    if(state.currentRoom!==1){
+      aiAction();
+    }
   },[state.currentRoom])
+
   useEffect(() => {
     if (currentCharacters.length === 0) {
       // you lose
@@ -61,7 +51,26 @@ const GameAction = () => {
       setAction("nextRoom");
     }
   }, [state.enemies.length, state.currentCharacters.length]);
-
+  function aiAction(){
+    if (turnOrder[whoseTurn].ai && !looseScreen) {
+      const timer = setTimeout(() => {
+        console.log(`${turnOrder[whoseTurn].name} has taken their turn`);
+        dispatch({
+          type: SET_LAST_MESSAGE,
+          payload: `${turnOrder[whoseTurn].name} ${turnOrder[whoseTurn]._id} has taken their turn`,
+        });
+        let target = Math.floor(Math.random() * state.currentCharacters.length);
+        console.log(target);
+        makeAttack(
+          turnOrder[whoseTurn].attack,
+          currentCharacters[target],
+          dispatch
+        );
+        dispatch({ type: TAKE_TURN });
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }
   function exitDungeon() {
     dispatch({ type: ADD_COIN, payload: state.totalRooms });
     dispatch({ type: RESET_GAME });
@@ -95,7 +104,7 @@ const GameAction = () => {
       </div>
     )
   }
-
+  console.log(turnOrder,whoseTurn)
   if (turnOrder[whoseTurn].ai) {
     // take the ai's turn
     console.log("ai turn");

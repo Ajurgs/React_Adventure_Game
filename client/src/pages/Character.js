@@ -1,11 +1,11 @@
-import React, { useEffect,useState, } from "react";
+import React, { useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 // import {Link} from 'react-router-dom';
 // import GameScreen from "../components/GameScreen";
 import { useGameContext } from "../utils/GlobalState";
 import { RESET_GAME } from "../utils/actions";
 import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import {
   ADD_CHARACTER_TO_PROFILE,
@@ -24,7 +24,7 @@ const Character = () => {
   const location = useLocation();
   const history = useHistory();
   const [state, dispatch] = useGameContext();
-  const { loading, data: character,refetch } = useQuery(QUERY_CHARACTERS);
+  const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
   //const [queryMe,{loading:loadingMe,data:myProfile}] = useLazyQuery(QUERY_ME);
   // const [profile,setProfile] = useState({
