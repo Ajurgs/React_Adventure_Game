@@ -36,10 +36,10 @@ You must first sign-up to create a profile. You will be redirected to '/me' wher
 
 
 ## Image Credits
--[Superdark](https://superdark.itch.io/16x16-free-npc-pack)
--[Superdark](https://superdark.itch.io/enchanted-forest-characters)
--[0x72](https://0x72.itch.io/dungeontileset-ii)
--AnriTool](https://anritool.itch.io/cr-tileset)
+-[Superdark 16x16-free-npc-pack](https://superdark.itch.io/16x16-free-npc-pack)
+-[Superdark enchanted-forest-characters](https://superdark.itch.io/enchanted-forest-characters)
+-[0x72 dungeontileset-II](https://0x72.itch.io/dungeontileset-ii)
+-[AnriTool cr-tileset](https://anritool.itch.io/cr-tileset)
 ## License
 
 MIT
