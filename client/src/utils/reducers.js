@@ -6,21 +6,22 @@ import {
     SET_TOTAL_ROOMS,
     SET_TURN_ORDER,
     TAKE_TURN,
-    ADD_COIN,
-    SUBTRACT_COIN,
-    SET_COIN,
     REMOVE_HERO,
     REMOVE_ENEMY,
     REMOVE_FROM_TURN,
     NEXT_ROOM,
     TOGGLE_BETWEEN_ROOM,
     SET_ENEMIES,
+    SET_COIN,
+    ADD_COIN,
+    SUBTRACT_COIN,
     TOGGLE_REWARD,
     RESET_GAME,
     TOGGLE_LOSE,
     TOGGLE_RETREAT,
     SET_LAST_MESSAGE,
     SET_TURN,
+    SET_USER_ID
 } from './actions';
 
 import { getTurnOrder ,nextTurn} from './helper';
@@ -110,6 +111,12 @@ export default function reducer(state,action){
             return{
                 ...state,
                 whoseTurn: action.payload,
+            }
+        }
+        case SET_USER_ID:{
+            return{
+                ...state,
+                userID : action.payload
             }
         }
         case TAKE_TURN:{

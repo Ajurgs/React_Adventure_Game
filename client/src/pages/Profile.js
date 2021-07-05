@@ -1,17 +1,19 @@
-import React from "react";
+import React,{useEffect} from "react";
 
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
+import { useGameContext } from "../utils/GlobalState";
 import GameScreen from "../components/GameScreen";
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
+import { SET_COIN,SET_USER_ID } from "../utils/actions";
 
 const Profile = () => {
   const { profileId } = useParams();
-
+  const [state, dispatch] = useGameContext();
   // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
   const { loading, data } = useQuery(
     profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
@@ -19,7 +21,14 @@ const Profile = () => {
       variables: { profileId: profileId },
     }
   );
+    useEffect(()=>{
+      console.log("got here 123");
 
+      if(data && data.me.coins){
+        dispatch({type:SET_USER_ID,payload:data.me._id})
+        dispatch({type:SET_COIN,payload:data.me.coins})
+      }
+    },[data])
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const profile = data?.me || data?.profile || {};
 
