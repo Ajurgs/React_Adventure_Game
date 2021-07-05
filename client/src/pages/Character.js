@@ -73,6 +73,7 @@ const Character = () => {
       console.log(data);
       coins = data.updateCoinBalance.coins;
       characters = data.updateCoinBalance.characters;
+      console.log(characters)
       _id = data.updateCoinBalance._id;
     } catch (error) {
       console.error(error);
@@ -146,12 +147,14 @@ const Character = () => {
                   <h5>Cost: {hero.cost}</h5>
                 </div>
                 <div className="card-body">
-                  <button
+
+                  {characters.some(char => char._id===hero._id) ? ("You already own this Character") : ( <button
                     className="btn btn-sm-buy"
                     onClick={() => buyCharacter(hero._id, hero.cost)}
                   >
                     Buy
-                  </button>
+                  </button>)}
+                 
                 </div>
               </div>
             ))}

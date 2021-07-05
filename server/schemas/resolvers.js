@@ -86,7 +86,7 @@ const resolvers = {
         profileId,
         { coins: coins },
         { new: true }
-      );
+      ).populate("characters");
     },
 
     //testing
