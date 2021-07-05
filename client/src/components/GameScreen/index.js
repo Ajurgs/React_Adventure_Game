@@ -5,7 +5,7 @@ import GameRoom from "../GameRoom.js";
 import GameLog from "../GameLog";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_ENEMIES } from "../../utils/queries";
-import { chooseThreeEnemies, convertToObjects} from "../../utils/helper";
+import { chooseThreeEnemies, convertToObjects } from "../../utils/helper";
 import {
   TOGGLE_GAME,
   TOGGLE_DUNGEON,
@@ -78,16 +78,20 @@ const GameScreen = () => {
   const handelFormSubmit = async (event) => {
     event.preventDefault();
     try {
-        console.log(formState.firstHero);
-        // Set the global state to the current instance of the game
-      
-        const test = convertToObjects([formState.firstHero,formState.secondHero,formState.thirdHero]);
-        dispatch({type:SET_HEROES, payload:test});
-        dispatch({ type: SET_TOTAL_ROOMS, payload: formState.dungeonSize });
-        const newEnemies = chooseThreeEnemies(enemyData.enemies);
-        dispatch({ type: SET_ENEMIES, payload: newEnemies });
-        dispatch({ type: SET_TURN_ORDER });
-        toggleDungeon();
+      console.log(formState.firstHero);
+      // Set the global state to the current instance of the game
+
+      const test = convertToObjects([
+        formState.firstHero,
+        formState.secondHero,
+        formState.thirdHero,
+      ]);
+      dispatch({ type: SET_HEROES, payload: test });
+      dispatch({ type: SET_TOTAL_ROOMS, payload: formState.dungeonSize });
+      const newEnemies = chooseThreeEnemies(enemyData.enemies);
+      dispatch({ type: SET_ENEMIES, payload: newEnemies });
+      dispatch({ type: SET_TURN_ORDER });
+      toggleDungeon();
     } catch (error) {
       console.error(error);
     }
@@ -145,7 +149,7 @@ const GameScreen = () => {
                       <option
                         key={index}
                         value={JSON.stringify({
-                          _id: c._id,
+                          _id: c._id + "-1",
                           name: c.name,
                           health: c.health,
                           attack: c.attack,
@@ -171,14 +175,14 @@ const GameScreen = () => {
                       <option
                         key={index}
                         value={JSON.stringify({
-                            _id: c._id,
-                            name: c.name,
-                            health: c.health,
-                            attack: c.attack,
-                            speed: c.speed,
-                            image: c.image,
-                            ai: false,
-                          })}
+                          _id: c._id + "-2",
+                          name: c.name,
+                          health: c.health,
+                          attack: c.attack,
+                          speed: c.speed,
+                          image: c.image,
+                          ai: false,
+                        })}
                       >
                         {c.name}
                       </option>
@@ -197,14 +201,14 @@ const GameScreen = () => {
                       <option
                         key={index}
                         value={JSON.stringify({
-                            _id: c._id,
-                            name: c.name,
-                            health: c.health,
-                            attack: c.attack,
-                            speed: c.speed,
-                            image: c.image,
-                            ai: false,
-                          })}
+                          _id: c._id + "-3",
+                          name: c.name,
+                          health: c.health,
+                          attack: c.attack,
+                          speed: c.speed,
+                          image: c.image,
+                          ai: false,
+                        })}
                       >
                         {c.name}
                       </option>
