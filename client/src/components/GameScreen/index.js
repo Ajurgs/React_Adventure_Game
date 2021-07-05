@@ -133,6 +133,7 @@ const GameScreen = () => {
                     style={styles.heroSelect}
                     name="firstHero"
                     onChange={handelChange}
+                    required
                   >
                     <option value=""> Choose a Hero</option>
                     {characters.map((c, index) => (
@@ -159,6 +160,7 @@ const GameScreen = () => {
                     style={styles.heroSelect}
                     name="secondHero"
                     onChange={handelChange}
+                    required
                   >
                     <option value=""> Choose a Hero</option>
                     {characters.map((c, index) => (
@@ -185,6 +187,7 @@ const GameScreen = () => {
                     style={styles.heroSelect}
                     name="thirdHero"
                     onChange={handelChange}
+                    required
                   >
                     <option value=""> Choose a Hero</option>
                     {characters.map((c, index) => (
@@ -217,6 +220,7 @@ const GameScreen = () => {
                       id="small"
                       value={5}
                       onChange={handelChange}
+                      required
                     />
                     5 Room
                   </label>
