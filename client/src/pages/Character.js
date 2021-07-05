@@ -148,8 +148,8 @@ const Character = () => {
                 <div className="card-body">
                   {characters.some((char) => char._id === hero._id) ? (
                     "You already own this Character"
-                  ) : hero.cost >= coins ? (
-                    "You don't have enough money to buy this hero!"
+                  ) : hero.cost > coins ? (
+                    "You don't have enough money to buy this"
                   ) : (
                     <button
                       className="btn btn-sm-buy"
