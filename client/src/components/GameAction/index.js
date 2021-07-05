@@ -33,7 +33,6 @@ const GameAction = () => {
 
   useEffect(()=>{
     console.log("room change");
-    //dispatch({type:TAKE_TURN});
     dispatch({type:SET_TURN,payload:0});
     if(state.currentRoom!==1){
       aiAction();

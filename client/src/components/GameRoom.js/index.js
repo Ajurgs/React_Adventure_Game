@@ -3,16 +3,12 @@ import React from "react";
 import { useGameContext } from "../../utils/GlobalState";
 
 const Style={
-
   gameroom:  {minHeight:"400px"},
   characterIcon :{height:"25%"},
   enemyIcon :{height:"25%"},
 }
-
 const GameRoom = () =>{
-
     const [state,dispatch]= useGameContext();
-
     const {currentCharacters,enemies} = state;
     if(state.betweenRooms){
         return(
@@ -49,9 +45,7 @@ const GameRoom = () =>{
                         <div key={index}className="card">
                             <div className="card-header">
                                 <img src = {process.env.PUBLIC_URL + hero.image} alt="hero" style ={Style.characterIcon}/>
-                                    
                                 <h5>
-                                
                                     {hero.name}
                                 </h5>
                             </div>
