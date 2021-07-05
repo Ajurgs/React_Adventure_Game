@@ -28,6 +28,7 @@ const profileSchema = new Schema({
   ],
   coins: {
     type: Number,
+    default: 40,
   },
 });
 

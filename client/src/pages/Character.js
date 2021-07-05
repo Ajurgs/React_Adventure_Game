@@ -5,7 +5,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useGameContext } from "../utils/GlobalState";
 import { RESET_GAME } from "../utils/actions";
 import { QUERY_CHARACTERS, QUERY_ME } from "../utils/queries";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import {
   ADD_CHARACTER_TO_PROFILE,
@@ -26,7 +26,12 @@ const Character = () => {
   const [state, dispatch] = useGameContext();
   const { loading, data: character } = useQuery(QUERY_CHARACTERS);
   const { loading: loadingMe, data: profile } = useQuery(QUERY_ME);
-
+  //const [queryMe,{loading:loadingMe,data:myProfile}] = useLazyQuery(QUERY_ME);
+  // const [profile,setProfile] = useState({
+  //   characters:[],
+  //   coins:0,
+  //   _id:"",
+  // });
   //TODO update profile coin balance when hero is purchased
   const [updateCoinBalance, { coinError, coinData }] =
     useMutation(UPDATE_COIN_BALANCE);
@@ -35,13 +40,13 @@ const Character = () => {
   );
 
   useEffect(() => {
+    //queryMe();
     dispatch({ type: RESET_GAME });
-  }, []);
+  }, [dispatch]);
 
   if (loading || loadingMe) {
     return <div>Loading...</div>;
   }
-
   // const { coins, characters, _id } = profile.me;
   const addCharacter = async (characterId) => {
     try {
@@ -53,9 +58,11 @@ const Character = () => {
       console.error(error);
     }
   };
+  let { coins, characters, _id } = profile.me;
 
   const updateCoins = async (cost) => {
     try {
+      console.log(typeof _id)
       console.log(coins - cost);
       const { data } = await updateCoinBalance({
         variables: {
@@ -63,8 +70,10 @@ const Character = () => {
           coins: coins - cost,
         },
       });
-
       console.log(data);
+      coins = data.updateCoinBalance.coins;
+      characters = data.updateCoinBalance.characters;
+      _id = data.updateCoinBalance._id;
     } catch (error) {
       console.error(error);
     }
@@ -74,7 +83,7 @@ const Character = () => {
     addCharacter(id);
     updateCoins(cost);
   };
-  const { coins, characters, _id } = profile.me;
+
 
   return (
     <div>

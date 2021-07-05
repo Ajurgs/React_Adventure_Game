@@ -3,15 +3,18 @@ import {
   TAKE_TURN,
   NEXT_ROOM,
   SET_ENEMIES,
-  ADD_COIN,
   TOGGLE_LOSE,
   RESET_GAME,
   SET_LAST_MESSAGE,
+  SET_TURN_ORDER,
+  SET_TURN,
 } from "../../utils/actions";
 
 import { useGameContext } from "../../utils/GlobalState";
 import { QUERY_ENEMIES } from "../../utils/queries";
+import { UPDATE_COIN_BALANCE } from "../../utils/mutations";
 import { useLazyQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { makeAttack, chooseThreeEnemies } from "../../utils/helper";
 
 const GameAction = () => {
@@ -20,30 +23,22 @@ const GameAction = () => {
   const [action, setAction] = useState("choose");
 
   const [getEnemies, { loading, data }] = useLazyQuery(QUERY_ENEMIES);
-
-  const { enemies, turnOrder, whoseTurn, currentCharacters } = state;
+  const [updateCoinBalance,{error,data:coinData}] = useMutation(UPDATE_COIN_BALANCE);
+  const { enemies, turnOrder, whoseTurn, currentCharacters,looseScreen } = state;
 
   useEffect(() => {
     console.log("in Use Effect");
-    if (turnOrder[whoseTurn].ai) {
-      const timer = setTimeout(() => {
-        console.log(`${turnOrder[whoseTurn].name} has taken their turn`);
-        dispatch({
-          type: SET_LAST_MESSAGE,
-          payload: `${turnOrder[whoseTurn].name} has taken their turn`,
-        });
-        let target = Math.floor(Math.random() * state.currentCharacters.length);
-        console.log(target);
-        makeAttack(
-          turnOrder[whoseTurn].attack,
-          currentCharacters[target],
-          dispatch
-        );
-        dispatch({ type: TAKE_TURN });
-      }, 1000);
-      return () => clearTimeout(timer);
+    aiAction();
+  }, [whoseTurn]);
+
+  useEffect(()=>{
+    console.log("room change");
+    //dispatch({type:TAKE_TURN});
+    dispatch({type:SET_TURN,payload:0});
+    if(state.currentRoom!==1){
+      aiAction();
     }
-  }, [state.whoseTurn]);
+  },[state.currentRoom])
 
   useEffect(() => {
     if (currentCharacters.length === 0) {
@@ -57,12 +52,43 @@ const GameAction = () => {
       setAction("nextRoom");
     }
   }, [state.enemies.length, state.currentCharacters.length]);
-
-  function exitDungeon() {
-    dispatch({ type: ADD_COIN, payload: state.totalRooms });
+  function aiAction(){
+    if (turnOrder[whoseTurn].ai && !looseScreen) {
+      const timer = setTimeout(() => {
+        console.log(`${turnOrder[whoseTurn].name} has taken their turn`);
+        dispatch({
+          type: SET_LAST_MESSAGE,
+          payload: `${turnOrder[whoseTurn].name} ${turnOrder[whoseTurn]._id} has taken their turn`,
+        });
+        let target = Math.floor(Math.random() * state.currentCharacters.length);
+        console.log(target);
+        makeAttack(
+          turnOrder[whoseTurn].attack,
+          currentCharacters[target],
+          dispatch
+        );
+        dispatch({ type: TAKE_TURN });
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }
+  async function exitDungeon() {
+    try{
+      console.log(state.coinBalance+state.totalRooms)
+      const {data} = await updateCoinBalance({
+        variables:{
+          profileId : state.userID,
+          coins: state.coinBalance + state.totalRooms,
+        }
+      })
+      console.log(data);
+    }
+    catch (err){
+      console.error(err)
+    }
     dispatch({ type: RESET_GAME });
   }
-  if (state.looseScreen) {
+    if (state.looseScreen) {
     return (
       <>
         <button
@@ -83,18 +109,15 @@ const GameAction = () => {
       </>
     );
   }
-
-  if (turnOrder[whoseTurn].ai) {
-    // take the ai's turn
-    console.log("ai turn");
-
-    return (
+  if(turnOrder<0){
+    dispatch({type:TAKE_TURN});
+    return(
       <div>
-        <h4>Please Wait while AI Makes its move</h4>
+        <h4>Go To next turn</h4>
       </div>
-    );
+    )
   }
-
+  console.log(turnOrder,whoseTurn)
   if (turnOrder[whoseTurn].ai) {
     // take the ai's turn
     console.log("ai turn");
@@ -114,13 +137,15 @@ const GameAction = () => {
   function handelAttack(index) {
     console.log(`attacking ${state.enemies[index].name} at index ${index} `);
     makeAttack(turnOrder[whoseTurn].attack, enemies[index], dispatch);
+    setAction("choose");
     dispatch({ type: TAKE_TURN });
   }
   function openDoor(enemies) {
     const newEnemies = chooseThreeEnemies(enemies);
     dispatch({ type: SET_ENEMIES, payload: newEnemies });
-    setAction("choose");
+    dispatch({type:SET_TURN_ORDER});
     dispatch({ type: NEXT_ROOM });
+    setAction("choose");
   }
   if (turnOrder[whoseTurn].ai) {
     // take the ai's turn

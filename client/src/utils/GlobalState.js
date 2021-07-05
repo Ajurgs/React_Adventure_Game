@@ -24,6 +24,7 @@ const GameProvider = ({value = [], ...props})=>{
         totalRooms: 1,
         whoseTurn:0,
         coinBalance: 0,
+        userID : "",
     })
     return <Provider value={[state,dispatch]} {...props}/>;
 }
