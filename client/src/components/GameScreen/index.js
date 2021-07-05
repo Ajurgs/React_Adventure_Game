@@ -151,7 +151,7 @@ const GameScreen = () => {
                       <option
                         key={index}
                         value={JSON.stringify({
-                          _id: c._id,
+                          _id: c._id + "-1",
                           name: c.name,
                           health: c.health,
                           attack: c.attack,
@@ -177,7 +177,7 @@ const GameScreen = () => {
                       <option
                         key={index}
                         value={JSON.stringify({
-                          _id: c._id,
+                          _id: c._id + "-2",
                           name: c.name,
                           health: c.health,
                           attack: c.attack,
@@ -203,7 +203,7 @@ const GameScreen = () => {
                       <option
                         key={index}
                         value={JSON.stringify({
-                          _id: c._id,
+                          _id: c._id + "-3",
                           name: c.name,
                           health: c.health,
                           attack: c.attack,

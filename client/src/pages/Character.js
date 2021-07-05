@@ -62,7 +62,7 @@ const Character = () => {
 
   const updateCoins = async (cost) => {
     try {
-      console.log(typeof _id)
+      console.log(typeof _id);
       console.log(coins - cost);
       const { data } = await updateCoinBalance({
         variables: {
@@ -73,7 +73,7 @@ const Character = () => {
       console.log(data);
       coins = data.updateCoinBalance.coins;
       characters = data.updateCoinBalance.characters;
-      console.log(characters)
+      console.log(characters);
       _id = data.updateCoinBalance._id;
     } catch (error) {
       console.error(error);
@@ -84,7 +84,6 @@ const Character = () => {
     addCharacter(id);
     updateCoins(cost);
   };
-
 
   return (
     <div>
@@ -147,14 +146,18 @@ const Character = () => {
                   <h5>Cost: {hero.cost}</h5>
                 </div>
                 <div className="card-body">
-
-                  {characters.some(char => char._id===hero._id) ? ("You already own this Character") : ( <button
-                    className="btn btn-sm-buy"
-                    onClick={() => buyCharacter(hero._id, hero.cost)}
-                  >
-                    Buy
-                  </button>)}
-                 
+                  {characters.some((char) => char._id === hero._id) ? (
+                    "You already own this Character"
+                  ) : hero.cost > coins ? (
+                    "You don't have enough money to buy this"
+                  ) : (
+                    <button
+                      className="btn btn-sm-buy"
+                      onClick={() => buyCharacter(hero._id, hero.cost)}
+                    >
+                      Buy
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
