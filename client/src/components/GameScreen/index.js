@@ -111,9 +111,11 @@ const GameScreen = () => {
           <GameRoom />
           <GameAction />
           <GameLog />
-          <button className="btn btn-sm-end-one" onClick={quitGame}>
-            Quit Game
-          </button>
+          <div className="">
+            <button className="btn btn-sm-end-one" onClick={quitGame}>
+              Quit Game
+            </button>
+          </div>
         </div>
       );
     } else {
