@@ -1011,8 +1011,9 @@ a:hover {
 }
 .btn.btn-sm-end-one {
   background-color: #bb7e5d;
-  margin-left: 1020px;
+  /* margin-left: 1020px; */
 }
+
 .btn.btn-sm-end {
   background-color: #bb7e5d;
   margin-left: 5px;
@@ -1453,6 +1454,8 @@ label form [type="radio"] {
     flex: 0 0 33.33333%;
     max-width: 33.33333%;
   }
+  .btn.btn-sm-quit {
+  }
   .col-sm-5 {
     flex: 0 0 41.66667%;
     max-width: 41.66667%;
@@ -1528,6 +1531,10 @@ label form [type="radio"] {
 @media screen and (min-width: 480px) {
   .col .character-card {
     font-size: 10px;
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+  .btn.btn-sm-end-one {
     flex-grow: 1;
     flex-basis: 0;
   }
