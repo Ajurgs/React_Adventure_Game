@@ -122,18 +122,6 @@ const GameScreen = () => {
       // select team and dungeon size
       if (data && data.me && enemyData && enemyData.enemies) {
         const { characters } = data.me;
-
-        //   if(characters.length < 3){
-        //       return(
-        //           <div className="card">
-
-        //             <h1>You Need More Heroes To Enter</h1>
-        //             <h2>You need at least 3 heroes to enter</h2>
-        //             <h2>You currently have {characters.length} heros</h2>
-        //           </div>
-        //       )
-        //   }
-        //   else{
         return (
           <div className="card">
             <form className="container" onSubmit={handelFormSubmit}>
@@ -274,8 +262,6 @@ const GameScreen = () => {
           </div>
         );
       }
-      // }
-      // if the data from the queries has not returned yet
       else {
         return <p>loading...</p>;
       }

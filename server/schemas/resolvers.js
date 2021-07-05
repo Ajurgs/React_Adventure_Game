@@ -71,14 +71,11 @@ const resolvers = {
     },
 
     removeCharacter: async (parent, { characterId, profileId }, context) => {
-      // if (context.user) {
       return Profile.findOneAndUpdate(
         { _id: profileId },
         { $pull: { characters: characterId } },
         { new: true }
       );
-      // }
-      // throw new AuthenticationError("You need to be logged in!");
     },
 
     updateCoinBalance: async (parent, { profileId, coins }) => {
