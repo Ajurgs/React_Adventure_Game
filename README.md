@@ -13,8 +13,7 @@ This is a full-stack MERN web application. It's a turn-based game that allows th
 - [Contributors](#contributors)
 - [Features](#features)
 - [Technologies](#technologies)
-- [License](#license)
-- [Image Credits](#credits)
+- [Image Credits](#image-credits)
 - [Application Screenshots](#application-screenshots)
 
 ## Links
@@ -38,14 +37,28 @@ You must first sign-up to create a profile. You will be redirected to '/me' wher
 
 - user authentication
 - persistent data
+- dynamic UI
+- decoupled front/back-end
+- redux
 
-## License
+## Technologies
 
-MIT
+- Mongoose
+- MongoDB
+- Express
+- React
+- Node
+- GraphQL
+- Apollo
+- JWT
+- Bcrypt
 
 ## Image Credits
 
--[Superdark 16x16-free-npc-pack](https://superdark.itch.io/16x16-free-npc-pack) -[Superdark enchanted-forest-characters](https://superdark.itch.io/enchanted-forest-characters) -[0x72 dungeontileset-II](https://0x72.itch.io/dungeontileset-ii) -[AnriTool cr-tileset](https://anritool.itch.io/cr-tileset)
+- [Superdark 16x16-free-npc-pack](https://superdark.itch.io/16x16-free-npc-pack)
+- [Superdark enchanted-forest-characters](https://superdark.itch.io/enchanted-forest-characters)
+- [0x72 dungeontileset-II](https://0x72.itch.io/dungeontileset-ii)
+- [AnriTool cr-tileset](https://anritool.itch.io/cr-tileset)
 
 ## Application Screenshots
 
