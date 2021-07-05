@@ -15,6 +15,10 @@ const GameLog = () => {
     logRef.current.value += `${state.lastMessage} \n`;
     logRef.current.scrollTop = logRef.current.scrollHeight;
   }, [state.lastMessage]);
+  useEffect(()=>{
+    logRef.current.value = "";
+    logRef.current.scrollTop = logRef.current.scrollHeight;
+  },[state.inDungeon]);
   return (
     <>
       <div>
@@ -23,6 +27,7 @@ const GameLog = () => {
           id="battleLog"
           style={Style.battleLog}
           ref={logRef}
+          readOnly
         ></textarea>
       </div>
     </>

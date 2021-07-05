@@ -42,7 +42,7 @@ const Character = () => {
   useEffect(() => {
     //queryMe();
     dispatch({ type: RESET_GAME });
-  }, []);
+  }, [dispatch]);
 
   if (loading || loadingMe) {
     return <div>Loading...</div>;
@@ -62,6 +62,7 @@ const Character = () => {
 
   const updateCoins = async (cost) => {
     try {
+      console.log(typeof _id)
       console.log(coins - cost);
       const { data } = await updateCoinBalance({
         variables: {

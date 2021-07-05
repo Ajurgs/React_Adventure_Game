@@ -3,7 +3,6 @@ import {
   TAKE_TURN,
   NEXT_ROOM,
   SET_ENEMIES,
-  ADD_COIN,
   TOGGLE_LOSE,
   RESET_GAME,
   SET_LAST_MESSAGE,
@@ -13,7 +12,9 @@ import {
 
 import { useGameContext } from "../../utils/GlobalState";
 import { QUERY_ENEMIES } from "../../utils/queries";
+import { UPDATE_COIN_BALANCE } from "../../utils/mutations";
 import { useLazyQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { makeAttack, chooseThreeEnemies } from "../../utils/helper";
 
 const GameAction = () => {
@@ -22,7 +23,7 @@ const GameAction = () => {
   const [action, setAction] = useState("choose");
 
   const [getEnemies, { loading, data }] = useLazyQuery(QUERY_ENEMIES);
-
+  const [updateCoinBalance,{error,data:coinData}] = useMutation(UPDATE_COIN_BALANCE);
   const { enemies, turnOrder, whoseTurn, currentCharacters,looseScreen } = state;
 
   useEffect(() => {
@@ -71,11 +72,23 @@ const GameAction = () => {
       return () => clearTimeout(timer);
     }
   }
-  function exitDungeon() {
-    dispatch({ type: ADD_COIN, payload: state.totalRooms });
+  async function exitDungeon() {
+    try{
+      console.log(state.coinBalance+state.totalRooms)
+      const {data} = await updateCoinBalance({
+        variables:{
+          profileId : state.userID,
+          coins: state.coinBalance + state.totalRooms,
+        }
+      })
+      console.log(data);
+    }
+    catch (err){
+      console.error(err)
+    }
     dispatch({ type: RESET_GAME });
   }
-  if (state.looseScreen) {
+    if (state.looseScreen) {
     return (
       <>
         <button
