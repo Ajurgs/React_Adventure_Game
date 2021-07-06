@@ -28,13 +28,19 @@ const GameAction = () => {
 
   useEffect(() => {
     console.log("in Use Effect");
+    if(!turnOrder[whoseTurn].ai){
+      dispatch({
+        type: SET_LAST_MESSAGE,
+        payload: `${turnOrder[whoseTurn].name}'s Turn`,
+      });
+    }
     aiAction();
   }, [whoseTurn]);
 
   useEffect(()=>{
     console.log("room change");
     dispatch({type:SET_TURN,payload:0});
-    if(state.currentRoom!==1){
+    if(state.currentRoom!==1 && turnOrder[whoseTurn].ai){
       aiAction();
     }
   },[state.currentRoom])
@@ -43,6 +49,8 @@ const GameAction = () => {
     if (currentCharacters.length === 0) {
       // you lose
       console.log("YOU LOSE!!!!");
+      dispatch({type: SET_LAST_MESSAGE,
+        payload: `The party is no more`,});
       dispatch({ type: TOGGLE_LOSE });
     }
     if (enemies.length === 0) {
@@ -134,7 +142,6 @@ const GameAction = () => {
     setAction("loading");
   }
   function handelAttack(index) {
-    console.log(`attacking ${state.enemies[index].name} at index ${index} `);
     makeAttack(turnOrder[whoseTurn].attack, enemies[index], dispatch);
     setAction("choose");
     dispatch({ type: TAKE_TURN });
