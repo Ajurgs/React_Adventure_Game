@@ -6,10 +6,11 @@ const Style={
   gameroom:  {minHeight:"400px"},
   characterIcon :{height:"25%"},
   enemyIcon :{height:"25%"},
+  active : {backgroundColor:"#2264b3"}
 }
 const GameRoom = () =>{
     const [state,dispatch]= useGameContext();
-    const {currentCharacters,enemies} = state;
+    const {currentCharacters,enemies,whoseTurn,turnOrder} = state;
     if(state.betweenRooms){
         return(
             <div className="card m-3" style={Style.gameroom}>
@@ -42,22 +43,44 @@ const GameRoom = () =>{
                     <div className="col-3 ">
                     <h5>Heros</h5>
                     {currentCharacters.map((hero,index)=>(
-                        <div key={index}className="card">
-                            <div className="card-header">
-                                <img src = {process.env.PUBLIC_URL + hero.image} alt="hero" style ={Style.characterIcon}/>
-                                <h5>
-                                    {hero.name}
-                                </h5>
-                            </div>
-                            <div className="card-body">
-                                <h6>Health: {hero.health}</h6>
-                            </div>
+                        hero._id === turnOrder[whoseTurn]._id ?(<div key={index}className="card">
+                        <div className="card-header" style={Style.active}>
+                            <img src = {process.env.PUBLIC_URL + hero.image} alt="hero" style ={Style.characterIcon}/>
+                            <h5>
+                                {hero.name}
+                            </h5>
                         </div>
+                        <div className="card-body">
+                            <h6>Health: {hero.health}</h6>
+                        </div>
+                    </div>):(<div key={index}className="card">
+                        <div className="card-header">
+                            <img src = {process.env.PUBLIC_URL + hero.image} alt="hero" style ={Style.characterIcon}/>
+                            <h5>
+                                {hero.name}
+                            </h5>
+                        </div>
+                        <div className="card-body">
+                            <h6>Health: {hero.health}</h6>
+                        </div>
+                    </div>)
                     ))}
                     </div>
                     <div className="col-3">
                     <h5>Enemies</h5>
                     {enemies.map((enemy,index)=>(
+                        enemy._id === turnOrder[whoseTurn]._id?(
+                        <div key={index}className="card">
+                            <div className="card-header" style={Style.active}>
+                            <img src = {process.env.PUBLIC_URL + enemy.image} alt="enemy" style ={Style.enemyIcon}/>
+                                <h5>
+                                    {enemy.name}
+                                </h5>
+                            </div>
+                            <div className="card-body">
+                                <h6>Health: {enemy.health}</h6>
+                            </div>
+                        </div>):(
                         <div key={index}className="card">
                             <div className="card-header">
                             <img src = {process.env.PUBLIC_URL + enemy.image} alt="enemy" style ={Style.enemyIcon}/>
@@ -68,7 +91,8 @@ const GameRoom = () =>{
                             <div className="card-body">
                                 <h6>Health: {enemy.health}</h6>
                             </div>
-                        </div>
+                        </div>)
+                        
                     ))}
                     </div>
                 </div>

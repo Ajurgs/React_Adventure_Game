@@ -1,5 +1,5 @@
 
-import { REMOVE_HERO,REMOVE_ENEMY,REMOVE_FROM_TURN,} from "./actions";
+import { REMOVE_HERO,REMOVE_ENEMY,REMOVE_FROM_TURN,SET_LAST_MESSAGE} from "./actions";
 
 
 export function getTurnOrder(heros,enemies) {
@@ -21,12 +21,15 @@ export function nextTurn(current,turnOrder) {
 
 export function makeAttack(damage,target,dispatch){
     if(target){
+        dispatch({type:SET_LAST_MESSAGE,payload:`Attacks ${target.name} for ${damage} damage `})
         console.log(target);
         target.health -= damage
         if(target.health <= 0){
             if(target.ai){
+                dispatch({type:SET_LAST_MESSAGE,payload:`${target.name} has Died `})
                 dispatch({type:REMOVE_ENEMY,payload:target._id});
             }else{
+                dispatch({type:SET_LAST_MESSAGE,payload:`${target.name} has Died `})
                 dispatch({type:REMOVE_HERO,payload:target._id});
             }
             dispatch({type:REMOVE_FROM_TURN,payload:target._id});
